@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		8B2B8562118B884200437315 /* GenerateArtwork */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 8B2B856D118B885B00437315 /* Build configuration list for PBXAggregateTarget "GenerateArtwork" */;
-			buildPhases = (
-				8B2B8561118B884200437315 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = GenerateArtwork;
-			productName = GenerateArtwork;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* OTPAuthAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* OTPAuthAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -98,16 +84,14 @@
 		8BF51058118748C7005C936F /* OTPAuthURLEntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF5104C118748C7005C936F /* OTPAuthURLEntryController.xib */; };
 		8BF51059118748C7005C936F /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF5104D118748C7005C936F /* RootViewController.xib */; };
 		DBD09F9918388625002B103D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09F9818388625002B103D /* Default-568h@2x.png */; };
+		DBD09F9B183887BA002B103D /* PlusButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09F9A183887BA002B103D /* PlusButton@2x.png */; };
+		DBD09F9D18388824002B103D /* Info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09F9C18388824002B103D /* Info@2x.png */; };
+		DBD09F9F1838883F002B103D /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09F9E1838883F002B103D /* close@2x.png */; };
+		DBD09FA118388C8A002B103D /* Refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09FA018388C8A002B103D /* Refresh@2x.png */; };
+		DBD09FA318389377002B103D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09FA218389377002B103D /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8B3F0E75122F134D009A6409 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8B2B8562118B884200437315;
-			remoteInfo = GenerateArtwork;
-		};
 		8BF23A2C13D4ED3800F3FD82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
@@ -244,8 +228,6 @@
 		8B18D0B61398021800A6654D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8B2B6E4E1187AC6B00437315 /* OTPGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPGenerator.m; sourceTree = "<group>"; };
 		8B2B6E4F1187AC6B00437315 /* OTPGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPGenerator.h; sourceTree = "<group>"; };
-		8B2B81C1118B4C9600437315 /* Refresh.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Refresh.pdf; sourceTree = "<group>"; };
-		8B2B8226118B62F500437315 /* PlusButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = PlusButton.pdf; path = ../../Resources/PlusButton.pdf; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2B8583118B8ACF00437315 /* Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Refresh.png; path = Resources/Refresh.png; sourceTree = SOURCE_ROOT; };
 		8B2B8584118B8ACF00437315 /* PlusButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlusButton.png; path = Resources/PlusButton.png; sourceTree = SOURCE_ROOT; };
 		8B2B85D7118B8DE400437315 /* OTPAuthUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTPAuthUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,19 +287,15 @@
 		8B8098E513D4FED600D4FCC8 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/gcc/arm-apple-darwin10/4.2.1/libstdc++.dylib"; sourceTree = SDKROOT; };
 		8B80995D13D500E200D4FCC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		8B96D76711DD5B1100BDBD2E /* RunIPhoneLaunchDaemons.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunIPhoneLaunchDaemons.sh; sourceTree = "<group>"; };
-		8BC958E3128B5DA400A0E8F2 /* iOSIcon-Auth.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iOSIcon-Auth.psd"; sourceTree = "<group>"; };
 		8BC958E4128B5DB500A0E8F2 /* Icon_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_2x.png; sourceTree = "<group>"; };
 		8BC958E5128B5DB500A0E8F2 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-iPad.png"; sourceTree = "<group>"; };
 		8BC958E6128B5DB500A0E8F2 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		8BC958E7128B5DB500A0E8F2 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		8BCB5ACE11C0307C009B6C40 /* GTMNSScanner+Unsigned.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSScanner+Unsigned.m"; sourceTree = "<group>"; };
 		8BCB5ACF11C0307C009B6C40 /* GTMNSScanner+Unsigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSScanner+Unsigned.h"; sourceTree = "<group>"; };
 		8BDA1F1013550A75003EF49C /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8BE5C90111A7423700A20746 /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		8BE5CF5411AB441D00A20746 /* OTPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPTableViewCell.xib; sourceTree = "<group>"; };
-		8BE5CF5A11AB48D200A20746 /* close.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = close.pdf; sourceTree = "<group>"; };
 		8BE5CF7111AB48F700A20746 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		8BE5CF7C11AB490F00A20746 /* Info.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Info.pdf; sourceTree = "<group>"; };
 		8BE5D6A511AC683500A20746 /* GTMRoundedRectPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMRoundedRectPath.h; sourceTree = "<group>"; };
 		8BE5D6A611AC683500A20746 /* GTMRoundedRectPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMRoundedRectPath.m; sourceTree = "<group>"; };
 		8BE5D80811AC824500A20746 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -342,7 +320,12 @@
 		8BF5104C118748C7005C936F /* OTPAuthURLEntryController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPAuthURLEntryController.xib; sourceTree = "<group>"; };
 		8BF5104D118748C7005C936F /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		8BF5147F118799AE005C936F /* OTPAuth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OTPAuth-Info.plist"; sourceTree = "<group>"; };
-		DBD09F9818388625002B103D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		DBD09F9818388625002B103D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DBD09F9A183887BA002B103D /* PlusButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButton@2x.png"; sourceTree = "<group>"; };
+		DBD09F9C18388824002B103D /* Info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info@2x.png"; sourceTree = "<group>"; };
+		DBD09F9E1838883F002B103D /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x.png"; sourceTree = "<group>"; };
+		DBD09FA018388C8A002B103D /* Refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Refresh@2x.png"; sourceTree = "<group>"; };
+		DBD09FA218389377002B103D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,18 +438,17 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BE5CF7111AB48F700A20746 /* close.png */,
+				DBD09F9E1838883F002B103D /* close@2x.png */,
+				8BE5C90111A7423700A20746 /* Info.png */,
+				DBD09F9C18388824002B103D /* Info@2x.png */,
+				8B2B8583118B8ACF00437315 /* Refresh.png */,
+				DBD09FA018388C8A002B103D /* Refresh@2x.png */,
+				8B2B8584118B8ACF00437315 /* PlusButton.png */,
+				DBD09F9A183887BA002B103D /* PlusButton@2x.png */,
 				8BC958E4128B5DB500A0E8F2 /* Icon_2x.png */,
 				8BC958E5128B5DB500A0E8F2 /* Icon-iPad.png */,
 				8BC958E6128B5DB500A0E8F2 /* Icon.png */,
-				8BC958E3128B5DA400A0E8F2 /* iOSIcon-Auth.psd */,
-				8BE5CF5A11AB48D200A20746 /* close.pdf */,
-				8BE5CF7111AB48F700A20746 /* close.png */,
-				8BE5CF7C11AB490F00A20746 /* Info.pdf */,
-				8BE5C90111A7423700A20746 /* Info.png */,
-				8B2B81C1118B4C9600437315 /* Refresh.pdf */,
-				8B2B8583118B8ACF00437315 /* Refresh.png */,
-				8B2B8584118B8ACF00437315 /* PlusButton.png */,
-				8B2B8226118B62F500437315 /* PlusButton.pdf */,
 				8B00BE9913748ABA00B36076 /* LegalNotices.html */,
 				8BF51047118748C7005C936F /* OTPAuthAboutController.xib */,
 				8BF51049118748C7005C936F /* MainWindow.xib */,
@@ -475,6 +457,7 @@
 				8BF5104D118748C7005C936F /* RootViewController.xib */,
 				8BE5CF5411AB441D00A20746 /* OTPTableViewCell.xib */,
 				8B00365211ECD2390092DE18 /* Default.png */,
+				DBD09FA218389377002B103D /* Default@2x.png */,
 				DBD09F9818388625002B103D /* Default-568h@2x.png */,
 				8BDA1F1213550A7B003EF49C /* Localizable.strings */,
 			);
@@ -618,7 +601,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8B3F0E76122F134D009A6409 /* PBXTargetDependency */,
 				8BF23A2F13D4ED5200F3FD82 /* PBXTargetDependency */,
 			);
 			name = OTPAuth;
@@ -722,7 +704,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* OTPAuth */,
-				8B2B8562118B884200437315 /* GenerateArtwork */,
 				8B2B85D6118B8DE400437315 /* OTPAuthUnitTest */,
 			);
 		};
@@ -752,17 +733,22 @@
 			files = (
 				8BF51053118748C7005C936F /* OTPAuthAboutController.xib in Resources */,
 				8BF51055118748C7005C936F /* MainWindow.xib in Resources */,
+				DBD09FA118388C8A002B103D /* Refresh@2x.png in Resources */,
 				8B00BE9A13748ABA00B36076 /* LegalNotices.html in Resources */,
+				DBD09F9B183887BA002B103D /* PlusButton@2x.png in Resources */,
 				8BF51057118748C7005C936F /* OTPWelcomeViewController.xib in Resources */,
 				8BF51058118748C7005C936F /* OTPAuthURLEntryController.xib in Resources */,
 				8BF51059118748C7005C936F /* RootViewController.xib in Resources */,
 				8B2B8585118B8ACF00437315 /* Refresh.png in Resources */,
+				DBD09F9D18388824002B103D /* Info@2x.png in Resources */,
 				8B2B8586118B8ACF00437315 /* PlusButton.png in Resources */,
 				8BE5C90211A7423700A20746 /* Info.png in Resources */,
 				8BE5CF5511AB441D00A20746 /* OTPTableViewCell.xib in Resources */,
 				8BE5CF7211AB48F700A20746 /* close.png in Resources */,
 				DBD09F9918388625002B103D /* Default-568h@2x.png in Resources */,
 				8B00365311ECD2390092DE18 /* Default.png in Resources */,
+				DBD09FA318389377002B103D /* Default@2x.png in Resources */,
+				DBD09F9F1838883F002B103D /* close@2x.png in Resources */,
 				8BC958E8128B5DB500A0E8F2 /* Icon_2x.png in Resources */,
 				8BC958E9128B5DB500A0E8F2 /* Icon-iPad.png in Resources */,
 				8BC958EA128B5DB500A0E8F2 /* Icon.png in Resources */,
@@ -773,27 +759,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8B2B8561118B884200437315 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Resources/Refresh.pdf",
-				"$(SRCROOT)/Resources/PlusButton.pdf",
-				"$(SRCROOT)/Resources/Info.pdf",
-				"$(SRCROOT)/Resources/close.pdf",
-			);
-			outputPaths = (
-				"$(SRCROOT)/Resources/Refresh.png",
-				"$(SRCROOT)/Resources/PlusButton.png",
-				"$(SRCROOT)/Resources/Info.png",
-				"$(SRCROOT)/Resources/close.png",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Generates pngs from our PDFs.\n# You will need to check out that PNG files from perforce before running this script.\n# You should never actually edit the PNG files. You should edit the PDFs and generate the PNGs from there.\n\n/usr/bin/sips -s format png -s dpiHeight 72 -s dpiWidth 72 -z 48 48 --out \"${SRCROOT}/Resources/Refresh.png\" \"${SRCROOT}/Resources/Refresh.pdf\"\n/usr/bin/sips -s format png -s dpiHeight 72 -s dpiWidth 72 -z 29 33 --out \"${SRCROOT}/Resources/PlusButton.png\" \"${SRCROOT}/Resources/PlusButton.pdf\"\n/usr/bin/sips -s format png -s dpiHeight 72 -s dpiWidth 72 -z 24 24 --out \"${SRCROOT}/Resources/Info.png\" \"${SRCROOT}/Resources/Info.pdf\"\n/usr/bin/sips -s format png -s dpiHeight 72 -s dpiWidth 72 -z 24 24 --out \"${SRCROOT}/Resources/close.png\" \"${SRCROOT}/Resources/close.pdf\"";
-		};
 		8B2B899E118B95ED00437315 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -872,11 +837,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8B3F0E76122F134D009A6409 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8B2B8562118B884200437315 /* GenerateArtwork */;
-			targetProxy = 8B3F0E75122F134D009A6409 /* PBXContainerItemProxy */;
-		};
 		8BF23A2F13D4ED5200F3FD82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZXingWidget;
@@ -1034,20 +994,6 @@
 			};
 			name = Release;
 		};
-		8B2B8563118B884200437315 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = GenerateArtwork;
-			};
-			name = Debug;
-		};
-		8B2B8564118B884200437315 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = GenerateArtwork;
-			};
-			name = Release;
-		};
 		8B2B85DA118B8DE500437315 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1102,15 +1048,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8B2B856D118B885B00437315 /* Build configuration list for PBXAggregateTarget "GenerateArtwork" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8B2B8563118B884200437315 /* Debug */,
-				8B2B8564118B884200437315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
