@@ -19,7 +19,7 @@
 #import "OTPAuthURLEntryController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "OTPAuthURL.h"
-#import "GTMNSString+URLArguments.h"
+#import "NSString+OTPURLArguments.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
 #import "Decoder.h"

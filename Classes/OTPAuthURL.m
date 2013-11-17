@@ -22,10 +22,10 @@
 
 #import "OTPDefines.h"
 
-#import "GTMNSDictionary+URLArguments.h"
-#import "GTMNSString+URLArguments.h"
-#import "GTMNSScanner+Unsigned.h"
-#import "GTMStringEncoding.h"
+#import "NSDictionary+OTPURLArguments.h"
+#import "NSString+OTPURLArguments.h"
+#import "NSScanner+OTPUnsignedLongLong.h"
+#import "OTPStringEncoding.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
 
@@ -107,7 +107,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
     authURL = [[[TOTPAuthURL alloc] initWithTOTPURL:url] autorelease];
   } else if (![urlScheme isEqualToString:kOTPAuthScheme]) {
     // Required (otpauth://)
-    _GTMDevLog(@"invalid scheme: %@", [url scheme]);
+    OTPDevLog(@"invalid scheme: %@", [url scheme]);
   } else {
     NSString *path = [url path];
     if ([path length] > 1) {
@@ -115,7 +115,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       NSString *name = [[url path] substringFromIndex:1];
 
       NSDictionary *query =
-        [NSDictionary gtm_dictionaryWithHttpArgumentsString:[url query]];
+              [NSDictionary otp_dictionaryWithHttpArgumentsString:[url query]];
 
       // Optional algorithm=(SHA1|SHA256|SHA512|MD5) defaults to SHA1
       NSString *algorithm = [query objectForKey:kQueryAlgorithmKey];
@@ -184,19 +184,11 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 }
 
 + (NSData *)base32Decode:(NSString *)string {
-  GTMStringEncoding *coder =
-    [GTMStringEncoding stringEncodingWithString:kBase32Charset];
-  [coder addDecodeSynonyms:kBase32Synonyms];
-  [coder ignoreCharacters:kBase32Sep];
-  return [coder decode:string];
+    return [[OTPStringEncoding base32CaseInsensitiveStringEncoding] decode:string];
 }
 
 + (NSString *)encodeBase32:(NSData *)data {
-  GTMStringEncoding *coder =
-    [GTMStringEncoding stringEncodingWithString:kBase32Charset];
-  [coder addDecodeSynonyms:kBase32Synonyms];
-  [coder ignoreCharacters:kBase32Sep];
-  return [coder encode:data];
+    return [[OTPStringEncoding base32CaseInsensitiveStringEncoding] encode:data];
 }
 
 - (id)initWithOTPGenerator:(OTPGenerator *)generator
@@ -471,9 +463,9 @@ static NSString *const TOTPAuthURLTimerNotification
   }
 
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://totp/%@?%@",
-                               kOTPAuthScheme,
-                               [self.name gtm_stringByEscapingForURLArgument],
-                               [query gtm_httpArgumentsString]]];
+                                                         kOTPAuthScheme,
+                                                         [self.name otp_stringByEscapingForURLArgument],
+                                                         [query otp_httpArgumentsString]]];
 }
 
 @end
@@ -511,7 +503,7 @@ static NSString *const TOTPAuthURLTimerNotification
   if ([[self class] isValidCounter:counterString]) {
     NSScanner *scanner = [NSScanner scannerWithString:counterString];
     uint64_t counter;
-    BOOL goodScan = [scanner gtm_scanUnsignedLongLong:&counter];
+    BOOL goodScan = [scanner otp_scanUnsignedLongLong:&counter];
     // Good scan should always be good based on the isValidCounter check above.
     NSAssert(goodScan, @"goodscan should be true: %c", goodScan);
     HOTPGenerator *generator
@@ -565,9 +557,9 @@ static NSString *const TOTPAuthURLTimerNotification
   [query setObject:val forKey:kQueryCounterKey];
 
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://hotp/%@?%@",
-                               kOTPAuthScheme,
-                               [[self name] gtm_stringByEscapingForURLArgument],
-                               [query gtm_httpArgumentsString]]];
+                                                         kOTPAuthScheme,
+                                                         [[self name] otp_stringByEscapingForURLArgument],
+                                                         [query otp_httpArgumentsString]]];
 }
 
 + (BOOL)isValidCounter:(NSString *)counter {

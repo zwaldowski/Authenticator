@@ -20,7 +20,7 @@
 #import "HOTPGenerator.h"
 #import "OTPAuthURL.h"
 #import "UIColor+MobileColors.h"
-#import "GTMRoundedRectPath.h"
+#import "OTPDrawing.h"
 
 @interface OTPTableViewCell ()
 @property (readwrite, retain, nonatomic) OTPAuthURL *authURL;
@@ -376,7 +376,7 @@
   CGGradientRef gradient = GoogleCreateBlueBarGradient();
   if (gradient) {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    GTMCGContextAddRoundRect(context, self.bounds, 8);
+    OTPContextAddRoundedRect(context, self.bounds, 8);
     CGContextClip(context);
     CGPoint midTop = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint midBottom = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
