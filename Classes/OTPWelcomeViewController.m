@@ -42,7 +42,7 @@
     
   UIBarButtonItem *button
     = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                     target:nil
+                                                     target:[[UIApplication sharedApplication] delegate]
                                                      action:@selector(addAuthURL:)]
        autorelease];
   self.navigationItem.rightBarButtonItem = button;

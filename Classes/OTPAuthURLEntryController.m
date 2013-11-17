@@ -28,9 +28,8 @@
 #import "UIColor+MobileColors.h"
 
 @interface OTPAuthURLEntryController () <AVCaptureMetadataOutputObjectsDelegate>
-@property(nonatomic, readwrite, assign) UITextField *activeTextField;
-@property(nonatomic, readwrite, assign) UIBarButtonItem *doneButtonItem;
-@property(nonatomic, readwrite, retain) Decoder *decoder;
+@property(nonatomic, readwrite) UITextField *activeTextField;
+@property(nonatomic, retain) UIBarButtonItem *doneButtonItem;
 @property (nonatomic) dispatch_queue_t queue;
 @property (nonatomic, retain) AVCaptureSession *avSession;
 @property BOOL handleCapture;
@@ -50,10 +49,18 @@
 @synthesize scanBarcodeButton = scanBarcodeButton_;
 @synthesize scrollView = scrollView_;
 @synthesize activeTextField = activeTextField_;
-@synthesize decoder = decoder_;
 @synthesize queue = queue_;
 @synthesize avSession = avSession_;
 @synthesize handleCapture = handleCapture_;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = NSLocalizedString(@"Add Token", @"Add Token Navigation Screen Title");
+    }
+    return self;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -78,14 +85,18 @@
   self.accountType = nil;
   self.scanBarcodeButton = nil;
   self.scrollView = nil;
-  self.decoder = nil;
-    dispatch_release(queue_);
-    self.queue = nil;
+  self.queue = nil;
   self.avSession = nil;
   [super dealloc];
 }
 
 - (void)viewDidLoad {
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = done;
+    self.doneButtonItem = done;
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = cancel;
+    
   self.accountName.placeholder
     = NSLocalizedString(@"user@example.com",
                         @"Placeholder string for used acccount");

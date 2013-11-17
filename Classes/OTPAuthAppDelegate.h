@@ -16,7 +16,7 @@
 //  the License.
 //
 
-#import "RootViewController.h"
+#import <UIKit/UIKit.h>
 #import "OTPAuthURLEntryController.h"
 
 typedef enum {
@@ -32,10 +32,9 @@ typedef enum {
     UITableViewDelegate,
     UIActionSheetDelegate,
     UIAlertViewDelegate>
+
 @property(nonatomic, retain) UINavigationController *navigationController;
 @property(nonatomic, retain) UIWindow *window;
-@property(nonatomic, retain) IBOutlet UINavigationController *authURLEntryController;
-@property(nonatomic, retain) IBOutlet UINavigationItem *authURLEntryNavigationItem;
 
 - (void)addAuthURL:(id)sender;
 

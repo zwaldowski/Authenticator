@@ -42,8 +42,6 @@
 
 - (IBAction)accountNameDidEndOnExit:(id)sender;
 - (IBAction)accountKeyDidEndOnExit:(id)sender;
-- (IBAction)cancel:(id)sender;
-- (IBAction)done:(id)sender;
 - (IBAction)scanBarcode:(id)sender;
 
 @end

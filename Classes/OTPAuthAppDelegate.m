@@ -24,6 +24,7 @@
 #import "OTPWelcomeViewController.h"
 #import "OTPAuthBarClock.h"
 #import "UIColor+MobileColors.h"
+#import "RootViewController.h"
 
 static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
@@ -47,33 +48,23 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 @implementation OTPAuthAppDelegate
 @synthesize window = window_;
-@synthesize authURLEntryController = authURLEntryController_;
 @synthesize navigationController = navigationController_;
 @synthesize authURLs = authURLs_;
 @synthesize rootViewController = rootViewController_;
 @synthesize editButton = editButton_;
 @synthesize editingState = editingState_;
 @synthesize urlAddAlert = urlAddAlert_;
-@synthesize authURLEntryNavigationItem = authURLEntryNavigationItem_;
 @synthesize urlBeingAdded = urlBeingAdded_;
 
 - (void)dealloc {
   self.window = nil;
-  self.authURLEntryController = nil;
   self.navigationController = nil;
   self.rootViewController = nil;
   self.authURLs = nil;
   self.editButton = nil;
   self.urlBeingAdded = nil;
   self.urlAddAlert = nil;
-  self.authURLEntryNavigationItem = nil;
   [super dealloc];
-}
-
-- (void)awakeFromNib {
-  self.authURLEntryNavigationItem.title
-    = NSLocalizedString(@"Add Token",
-                        @"Add Token Navigation Screen Title");
 }
 
 - (void)updateUI {
@@ -352,7 +343,10 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 #pragma mark Actions
 
 - (void)addAuthURL:(id)sender {
-  [self.navigationController presentViewController:self.authURLEntryController animated:YES completion:^{
+    OTPAuthURLEntryController *URLEntry = [[OTPAuthURLEntryController alloc] init];
+    URLEntry.delegate = self;
+    UINavigationController *authURLNav = [[UINavigationController alloc] initWithRootViewController:URLEntry];
+  [self.navigationController presentViewController:authURLNav animated:YES completion:^{
       [self.navigationController popToRootViewControllerAnimated:NO];
       [self.rootViewController setEditing:NO animated:NO];
   }];
