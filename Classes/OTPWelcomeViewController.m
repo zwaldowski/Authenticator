@@ -17,7 +17,6 @@
 //
 
 #import "OTPWelcomeViewController.h"
-#import "GTMLocalizedString.h"
 #import "OTPAuthAppDelegate.h"
 
 @implementation OTPWelcomeViewController
@@ -38,7 +37,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   UINavigationItem *navItem = [self navigationItem];
-  NSString *title = GTMLocalizedString(@"Welcome", @"Title for welcome screen");
+  NSString *title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
   navItem.title = title;
   navItem.hidesBackButton = YES;
   UIBarButtonItem *button
@@ -48,7 +47,7 @@
        autorelease];
   [navItem setRightBarButtonItem:button animated:NO];
 
-  NSString *label = GTMLocalizedString(@"Welcome_label", @"Welcome text");
+  NSString *label = NSLocalizedString(@"Welcome_label", @"Welcome text");
   welcomeText_.text = label;
 }
 

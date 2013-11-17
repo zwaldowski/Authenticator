@@ -18,7 +18,6 @@
 
 #import "OTPAuthAboutController.h"
 #import "UIColor+MobileColors.h"
-#import "GTMLocalizedString.h"
 
 @interface OTPAuthAboutWebViewController : UIViewController
   <UIWebViewDelegate, UIAlertViewDelegate> {
@@ -91,20 +90,20 @@
   switch([indexPath row]) {
     case 0:
       label = @"Terms of Service";
-      text = GTMLocalizedString(@"Terms of Service",
-                                @"Terms of Service Table Item Title");
+      text = NSLocalizedString(@"Terms of Service",
+                               @"Terms of Service Table Item Title");
       break;
 
     case 1:
       label = @"Privacy Policy";
-      text = GTMLocalizedString(@"Privacy Policy",
-                                @"Privacy Policy Table Item Title");
+      text = NSLocalizedString(@"Privacy Policy",
+                               @"Privacy Policy Table Item Title");
       break;
 
     case 2:
       label = @"Legal Notices";
-      text = GTMLocalizedString(@"Legal Notices",
-                                @"Legal Notices Table Item Title");
+      text = NSLocalizedString(@"Legal Notices",
+                               @"Legal Notices Table Item Title");
       break;
 
     default:
@@ -225,14 +224,14 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
   [self stopSpinner];
   NSString *errString
-    = GTMLocalizedString(@"Unable to load webpage.",
-                         @"Notification that a web page cannot be loaded");
+    = NSLocalizedString(@"Unable to load webpage.",
+                        @"Notification that a web page cannot be loaded");
   UIAlertView *alert
     = [[[UIAlertView alloc] initWithTitle:errString
                                   message:[error localizedDescription]
                                  delegate:nil
-                        cancelButtonTitle:GTMLocalizedString(@"OK",
-                                                             @"OK button")
+                        cancelButtonTitle:NSLocalizedString(@"OK",
+                                                            @"OK button")
                         otherButtonTitles:nil] autorelease];
   [alert setDelegate:self];
   [alert show];

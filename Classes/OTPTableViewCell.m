@@ -20,7 +20,6 @@
 #import "HOTPGenerator.h"
 #import "OTPAuthURL.h"
 #import "UIColor+MobileColors.h"
-#import "GTMLocalizedString.h"
 #import "GTMRoundedRectPath.h"
 
 @interface OTPTableViewCell ()
@@ -90,8 +89,8 @@
     [self.contentView addSubview:self.frontView];
     [self updateUIForAuthURL:self.authURL];
     self.backIntegrityCheckLabel.text =
-        GTMLocalizedString(@"Integrity Check Value",
-                           @"Integerity Check Value label");
+        NSLocalizedString(@"Integrity Check Value",
+                          @"Integerity Check Value label");
   }
 }
 

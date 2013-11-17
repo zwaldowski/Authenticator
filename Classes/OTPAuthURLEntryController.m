@@ -25,7 +25,6 @@
 #import "Decoder.h"
 #import "TwoDDecoderResult.h"
 #import "OTPScannerOverlayView.h"
-#import "GTMLocalizedString.h"
 #import "UIColor+MobileColors.h"
 
 @interface OTPAuthURLEntryController ()
@@ -88,25 +87,25 @@
 
 - (void)viewDidLoad {
   self.accountName.placeholder
-    = GTMLocalizedString(@"user@example.com",
-                         @"Placeholder string for used acccount");
+    = NSLocalizedString(@"user@example.com",
+                        @"Placeholder string for used acccount");
   self.accountNameLabel.text
-    = GTMLocalizedString(@"Account:",
-                         @"Label for Account field");
+    = NSLocalizedString(@"Account:",
+                        @"Label for Account field");
   self.accountKey.placeholder
-    = GTMLocalizedString(@"Enter your key",
-                         @"Placeholder string for key field");
+    = NSLocalizedString(@"Enter your key",
+                        @"Placeholder string for key field");
   self.accountKeyLabel.text
-    = GTMLocalizedString(@"Key:",
-                         @"Label for Key field");
-  [self.scanBarcodeButton setTitle:GTMLocalizedString(@"Scan Barcode",
-                                                      @"Scan Barcode button title")
+    = NSLocalizedString(@"Key:",
+                        @"Label for Key field");
+  [self.scanBarcodeButton setTitle:NSLocalizedString(@"Scan Barcode",
+                                                     @"Scan Barcode button title")
                           forState:UIControlStateNormal];
-  [self.accountType setTitle:GTMLocalizedString(@"Time Based",
-                                                @"Time Based Account Type")
+  [self.accountType setTitle:NSLocalizedString(@"Time Based",
+                                               @"Time Based Account Type")
       forSegmentAtIndex:0];
-  [self.accountType setTitle:GTMLocalizedString(@"Counter Based",
-                                                @"Counter Based Account Type")
+  [self.accountType setTitle:NSLocalizedString(@"Counter Based",
+                                               @"Counter Based Account Type")
       forSegmentAtIndex:1];
 
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -232,21 +231,21 @@
       [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
     }
   } else {
-    NSString *title = GTMLocalizedString(@"Invalid Key",
-                                         @"Alert title describing a bad key");
+    NSString *title = NSLocalizedString(@"Invalid Key",
+                                        @"Alert title describing a bad key");
     NSString *message = nil;
     if ([encodedSecret length]) {
       message = [NSString stringWithFormat:
-                 GTMLocalizedString(@"The key '%@' is invalid.",
-                                    @"Alert describing invalid key"),
+                 NSLocalizedString(@"The key '%@' is invalid.",
+                                   @"Alert describing invalid key"),
                  encodedSecret];
     } else {
-      message = GTMLocalizedString(@"You must enter a key.",
-                                   @"Alert describing missing key");
+      message = NSLocalizedString(@"You must enter a key.",
+                                  @"Alert describing missing key");
     }
     NSString *button
-      = GTMLocalizedString(@"Try Again",
-                           @"Button title to try again");
+      = NSLocalizedString(@"Try Again",
+                          @"Button title to try again");
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
@@ -296,7 +295,7 @@
   UIButton *cancelButton =
     [UIButton buttonWithType:UIButtonTypeRoundedRect];
   NSString *cancelString
-    = GTMLocalizedString(@"Cancel", @"Cancel button for taking pictures");
+    = NSLocalizedString(@"Cancel", @"Cancel button for taking pictures");
   cancelButton.accessibilityLabel = @"Cancel";
   CGFloat height = [UIFont systemFontSize];
   CGSize size
@@ -419,15 +418,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
         [self dismissViewControllerAnimated:NO completion:NULL];
     } else {
-      NSString *title = GTMLocalizedString(@"Invalid Barcode",
-                                           @"Alert title describing a bad barcode");
+      NSString *title = NSLocalizedString(@"Invalid Barcode",
+                                          @"Alert title describing a bad barcode");
       NSString *message = [NSString stringWithFormat:
-                           GTMLocalizedString(@"The barcode '%@' is not a valid "
-                                              @"authentication token barcode.",
-                                              @"Alert describing invalid barcode type."),
+                           NSLocalizedString(@"The barcode '%@' is not a valid "
+                                             @"authentication token barcode.",
+                                             @"Alert describing invalid barcode type."),
                  urlString];
-      NSString *button = GTMLocalizedString(@"Try Again",
-                                            @"Button title to try again");
+      NSString *button = NSLocalizedString(@"Try Again",
+                                           @"Button title to try again");
       UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
                                                        message:message
                                                       delegate:self

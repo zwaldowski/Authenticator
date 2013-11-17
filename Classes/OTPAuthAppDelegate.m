@@ -25,7 +25,6 @@
 #import "OTPWelcomeViewController.h"
 #import "OTPAuthBarClock.h"
 #import "UIColor+MobileColors.h"
-#import "GTMLocalizedString.h"
 
 static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
@@ -79,14 +78,14 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)awakeFromNib {
   self.legalButton.title
-    = GTMLocalizedString(@"Legal Information",
-                         @"Legal Information Button Title");
+    = NSLocalizedString(@"Legal Information",
+                        @"Legal Information Button Title");
   self.navigationItem.title
-    = GTMLocalizedString(@"Google Authenticator",
-                         @"Product Name");
+    = NSLocalizedString(@"Google Authenticator",
+                        @"Product Name");
   self.authURLEntryNavigationItem.title
-    = GTMLocalizedString(@"Add Token",
-                         @"Add Token Navigation Screen Title");
+    = NSLocalizedString(@"Add Token",
+                        @"Add Token Navigation Screen Title");
 }
 
 - (void)updateEditing:(UITableView *)tableView {
@@ -145,14 +144,14 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
   OTPAuthURL *authURL = [OTPAuthURL authURLWithURL:url secret:nil];
   if (authURL) {
-    NSString *title = GTMLocalizedString(@"Add Token",
-                                         @"Add Token Alert Title");
+    NSString *title = NSLocalizedString(@"Add Token",
+                                        @"Add Token Alert Title");
     NSString *message
       = [NSString stringWithFormat:
-         GTMLocalizedString(@"Do you want to add the token named “%@”?",
-                            @"Add Token Message"), [authURL name]];
-    NSString *noButton = GTMLocalizedString(@"No", @"No");
-    NSString *yesButton = GTMLocalizedString(@"Yes", @"Yes");
+         NSLocalizedString(@"Do you want to add the token named “%@”?",
+                           @"Add Token Message"), [authURL name]];
+    NSString *noButton = NSLocalizedString(@"No", @"No");
+    NSString *yesButton = NSLocalizedString(@"Yes", @"Yes");
 
     self.urlAddAlert = [[[UIAlertView alloc] initWithTitle:title
                                                    message:message
