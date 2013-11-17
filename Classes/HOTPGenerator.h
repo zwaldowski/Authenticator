@@ -23,10 +23,7 @@
 // The counter, incremented on each generated OTP.
 @property(assign, nonatomic) uint64_t counter;
 
-+ (uint64_t)defaultInitialCounter;
++ (NSInteger)defaultInitialCounter;
 
-- (id)initWithSecret:(NSData *)secret
-           algorithm:(NSString *)algorithm
-              digits:(NSUInteger)digits
-             counter:(uint64_t)counter;
+- (id)initWithSecret:(NSData *)secret algorithm:(NSString *)algorithm digits:(uint32_t)digits counter:(NSInteger)counter;
 @end

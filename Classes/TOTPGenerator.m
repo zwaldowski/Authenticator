@@ -32,7 +32,7 @@
 
 - (id)initWithSecret:(NSData *)secret
            algorithm:(NSString *)algorithm
-              digits:(NSUInteger)digits
+			  digits:(uint32_t)digits
               period:(NSTimeInterval)period {
 	if (period <= 0 || period > 300) {
 		OTPDevLog(@"Bad Period: %f", period);

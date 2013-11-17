@@ -47,16 +47,16 @@
 
 @property (readonly, nonatomic, copy) NSString *algorithm;
 @property (readonly, nonatomic, copy) NSData *secret;
-@property (readonly, nonatomic) NSUInteger digits;
+@property (readonly, nonatomic) uint32_t digits;
 
 // Some default values.
 + (NSString *)defaultAlgorithm;
-+ (NSUInteger)defaultDigits;
++ (uint32_t)defaultDigits;
 
 // Designated initializer.
 - (id)initWithSecret:(NSData *)secret
            algorithm:(NSString *)algorithm
-              digits:(NSUInteger)digits;
+              digits:(uint32_t)digits;
 
 
 // Instance method to generate an OTP using the |algorithm|, |secret|,

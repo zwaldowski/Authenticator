@@ -22,20 +22,16 @@
 @implementation HOTPGenerator
 @synthesize counter = counter_;
 
-+ (uint64_t)defaultInitialCounter {
++ (NSInteger)defaultInitialCounter {
   return 1;
 }
 
-- (id)initWithSecret:(NSData *)secret
-           algorithm:(NSString *)algorithm
-              digits:(NSUInteger)digits
-             counter:(uint64_t)counter {
-  if ((self = [super initWithSecret:secret
-                          algorithm:algorithm
-                             digits:digits])) {
-    counter_ = counter;
-  }
-  return self;
+- (id)initWithSecret:(NSData *)secret algorithm:(NSString *)algorithm digits:(uint32_t)digits counter:(NSInteger)counter {
+	self = [super initWithSecret:secret algorithm:algorithm digits:digits];
+	if (self) {
+		counter_ = counter;
+	}
+	return self;
 }
 
 - (NSString *)generateOTP {

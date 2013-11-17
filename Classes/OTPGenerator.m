@@ -51,7 +51,7 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
   return kOTPGeneratorSHA1Algorithm;
 }
 
-+ (NSUInteger)defaultDigits {
++ (uint32_t)defaultDigits {
   return 6;
 }
 
@@ -66,10 +66,10 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 
 - (id)initWithSecret:(NSData *)secret
            algorithm:(NSString *)algorithm
-              digits:(NSUInteger)digits {
+              digits:(uint32_t)digits {
 	BOOL goodAlgorithm = ([algorithm isEqualToString:kOTPGeneratorSHA1Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHA256Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHA512Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHAMD5Algorithm]);
     if (!goodAlgorithm || digits > 8 || digits < 6 || !secret) {
-		OTPDevLog(@"Bad args digits(min 6, max 8): %d secret: %@ algorithm: %@", digits, secret, algorithm);
+		OTPDevLog(@"Bad args digits(min 6, max 8): %lu secret: %@ algorithm: %@", (unsigned long)digits, secret, algorithm);
 		return (self = nil);
     }
 
@@ -129,10 +129,10 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
   OTPDevLog(@"counter: %llu", counter);
   OTPDevLog(@"hash: %@", hash);
   OTPDevLog(@"offset: %d", offset);
-  OTPDevLog(@"truncatedHash: %d", truncatedHash);
-  OTPDevLog(@"pinValue: %d", pinValue);
+  OTPDevLog(@"truncatedHash: %lu", truncatedHash);
+  OTPDevLog(@"pinValue: %lu", pinValue);
 
-  return [NSString stringWithFormat:@"%0*lu", digits_, pinValue];
+  return [NSString stringWithFormat:@"%0*lu", (int)digits_, pinValue];
 }
 
 @end

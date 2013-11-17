@@ -74,7 +74,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 - (id)initWithName:(NSString *)name
             secret:(NSData *)secret
          algorithm:(NSString *)algorithm
-            digits:(NSUInteger)digits
+            digits:(uint32_t)digits
              query:(NSDictionary *)query;
 @end
 
@@ -83,7 +83,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 - (id)initWithName:(NSString *)name
             secret:(NSData *)secret
          algorithm:(NSString *)algorithm
-            digits:(NSUInteger)digits
+            digits:(uint32_t)digits
              query:(NSDictionary *)query;
 @property(readwrite, copy, nonatomic) NSString *otpCode;
 
@@ -126,7 +126,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       }
       // Optional digits=[68] defaults to 8
       NSString *digitString = query[kQueryDigitsKey];
-      NSUInteger digits = 0;
+      uint32_t digits = 0;
       if (!digitString) {
         digits = [OTPGenerator defaultDigits];
       } else {
@@ -218,7 +218,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 
     status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)attributes);
 
-    OTPDevLog(@"SecItemUpdate(%@, %@) = %ld", query, attributes, status);
+    OTPDevLog(@"SecItemUpdate(%@, %@) = %d", query, attributes, (int)status);
   } else {
     attributes[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
     attributes[(__bridge id)kSecReturnPersistentRef] = (id)kCFBooleanTrue;
@@ -241,7 +241,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
         break;
       }
     }
-    OTPDevLog(@"SecItemAdd(%@, %@) = %ld", attributes, ref, status);
+    OTPDevLog(@"SecItemAdd(%@, %@) = %d", attributes, ref, (int)status);
 
     if (status == noErr) {
       self.keychainItemRef = (__bridge_transfer NSData *)ref;
@@ -259,7 +259,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
                          (__bridge id)kSecValuePersistentRef: [self keychainItemRef]};
   OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
 
-  OTPDevLog(@"SecItemDelete(%@) = %ld", query, status);
+  OTPDevLog(@"SecItemDelete(%@) = %d", query, (int)status);
 
   if (status == noErr) {
     [self setKeychainItemRef:nil];
@@ -358,7 +358,7 @@ static NSString *const TOTPAuthURLTimerNotification
 - (id)initWithName:(NSString *)name
             secret:(NSData *)secret
          algorithm:(NSString *)algorithm
-            digits:(NSUInteger)digits
+            digits:(uint32_t)digits
              query:(NSDictionary *)query {
   NSString *periodString = query[kQueryPeriodKey];
   NSTimeInterval period = 0;
@@ -448,7 +448,7 @@ static NSString *const TOTPAuthURLTimerNotification
 - (id)initWithOTPGenerator:(OTPGenerator *)generator
                name:(NSString *)name {
   if ((self = [super initWithOTPGenerator:generator name:name])) {
-    uint64_t counter = [(HOTPGenerator *)generator counter];
+    int64_t counter = [(HOTPGenerator *)generator counter];
     self.otpCode = [generator generateOTPForCounter:counter];
   }
   return self;
@@ -467,7 +467,7 @@ static NSString *const TOTPAuthURLTimerNotification
 - (id)initWithName:(NSString *)name
             secret:(NSData *)secret
          algorithm:(NSString *)algorithm
-            digits:(NSUInteger)digits
+            digits:(uint32_t)digits
              query:(NSDictionary *)query {
   NSString *counterString = query[kQueryCounterKey];
   if ([[self class] isValidCounter:counterString]) {
