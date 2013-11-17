@@ -35,7 +35,7 @@ To use Google Authenticator you must first add an account by pressing:</string>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" label="AddAccount"/>
                     <fontDescription key="fontDescription" name="Helvetica-BoldOblique" family="Helvetica" pointSize="15"/>
-                    <state key="normal" image="PlusButton.png">
+                    <state key="normal" image="PlusButton">
                         <color key="titleColor" red="0.19607843" green="0.30980393000000001" blue="0.52156866000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -52,6 +52,6 @@ To use Google Authenticator you must first add an account by pressing:</string>
         </view>
     </objects>
     <resources>
-        <image name="PlusButton.png" width="33" height="29"/>
+        <image name="PlusButton" width="33" height="29"/>
     </resources>
 </document>
