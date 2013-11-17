@@ -90,11 +90,6 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 @end
 
 @implementation OTPAuthURL
-@synthesize name = name_;
-@synthesize keychainItemRef = keychainItemRef_;
-@synthesize generator = generator_;
-@dynamic checkCode;
-@dynamic otpCode;
 
 + (OTPAuthURL *)authURLWithURL:(NSURL *)url
                         secret:(NSData *)secret {

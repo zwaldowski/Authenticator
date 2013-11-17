@@ -21,7 +21,7 @@
 @interface HOTPGenerator : OTPGenerator
 
 // The counter, incremented on each generated OTP.
-@property(assign, nonatomic) uint64_t counter;
+@property (readonly) uint64_t counter;
 
 + (NSInteger)defaultInitialCounter;
 

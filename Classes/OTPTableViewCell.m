@@ -41,18 +41,6 @@
 
 @implementation OTPTableViewCell
 
-@synthesize frontCodeLabel = frontCodeLabel_;
-@synthesize frontWarningLabel = frontWarningLabel_;
-@synthesize backCheckLabel = backCheckLabel_;
-@synthesize backIntegrityCheckLabel = backIntegrityCheckLabel_;
-@synthesize frontNameTextField = frontNameTextField_;
-@synthesize frontRefreshButton = frontRefreshButton_;
-@synthesize frontInfoButton = frontInfoButton_;
-@synthesize frontView = frontView_;
-@synthesize backView = backView_;
-@synthesize authURL = authURL_;
-@synthesize showingInfo = showingInfo_;
-
 - (id)initWithStyle:(UITableViewCellStyle)style
     reuseIdentifier:(NSString *)reuseIdentifier {
   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
@@ -91,16 +79,11 @@
 }
 
 - (void)setAuthURL:(OTPAuthURL *)authURL {
-  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-  [nc removeObserver:self
-                name:OTPAuthURLDidGenerateNewOTPNotification
-              object:authURL_];
-  authURL_ = authURL;
-  [self updateUIForAuthURL:authURL_];
-  [nc addObserver:self
-         selector:@selector(otpAuthURLDidGenerateNewOTP:)
-             name:OTPAuthURLDidGenerateNewOTPNotification
-           object:authURL_];
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc removeObserver:self name:OTPAuthURLDidGenerateNewOTPNotification object:_authURL];
+	_authURL = authURL;
+	[nc addObserver:self selector:@selector(otpAuthURLDidGenerateNewOTP:) name:OTPAuthURLDidGenerateNewOTPNotification object:_authURL];
+	[self updateUIForAuthURL:_authURL];
 }
 
 - (void)willBeginEditing {
@@ -222,7 +205,7 @@
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                            forView:self.contentView
                              cache:YES];
-    [backView_ removeFromSuperview];
+    [_backView removeFromSuperview];
     [self.contentView addSubview:self.frontView];
     [UIView commitAnimations];
     self.showingInfo = NO;

@@ -41,18 +41,6 @@
 @end
 
 @implementation OTPAuthURLEntryController
-@synthesize delegate = delegate_;
-@synthesize doneButtonItem = doneButtonItem_;
-@synthesize accountName = accountName_;
-@synthesize accountKey = accountKey_;
-@synthesize accountNameLabel = accountNameLabel_;
-@synthesize accountKeyLabel = accountKeyLabel_;
-@synthesize accountType = accountType_;
-@synthesize scanBarcodeButton = scanBarcodeButton_;
-@synthesize scrollView = scrollView_;
-@synthesize activeTextField = activeTextField_;
-@synthesize avSession = avSession_;
-@synthesize handleCapture = handleCapture_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -202,7 +190,7 @@
 
   if ([secret length]) {
     Class authURLClass = Nil;
-    if ([accountType_ selectedSegmentIndex] == 0) {
+    if ([self.accountType selectedSegmentIndex] == 0) {
       authURLClass = [TOTPAuthURL class];
     } else {
       authURLClass = [HOTPAuthURL class];

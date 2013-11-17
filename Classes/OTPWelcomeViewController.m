@@ -27,8 +27,6 @@
 
 @implementation OTPWelcomeViewController
 
-@synthesize welcomeText = welcomeText_;
-
 - (id)init {
   if ((self = [super initWithNibName:@"OTPWelcomeViewController" bundle:nil])) {
     self.hidesBottomBarWhenPushed = YES;
@@ -49,7 +47,7 @@
   self.navigationItem.rightBarButtonItem = button;
 
   NSString *label = NSLocalizedString(@"Welcome_label", @"Welcome text");
-  welcomeText_.text = label;
+  self.welcomeText.text = label;
 }
 
 @end

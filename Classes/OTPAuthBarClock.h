@@ -18,8 +18,9 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface OTPAuthBarClock : UIView
+
 - (id)initWithFrame:(CGRect)frame period:(NSTimeInterval)period;
 - (void)invalidate;
+
 @end

@@ -41,8 +41,9 @@ NSString *const kOTPGeneratorSHA512Algorithm = @"SHA512";
 NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 
 @interface OTPGenerator ()
-@property (readwrite, nonatomic, copy) NSString *algorithm;
-@property (readwrite, nonatomic, copy) NSData *secret;
+@property (copy, nonatomic, readwrite) NSString *algorithm;
+@property (copy, nonatomic, readwrite) NSData *secret;
+@property (nonatomic, readwrite) uint32_t digits;
 @end
 
 @implementation OTPGenerator
@@ -54,10 +55,6 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 + (uint32_t)defaultDigits {
   return 6;
 }
-
-@synthesize algorithm = algorithm_;
-@synthesize secret = secret_;
-@synthesize digits = digits_;
 
 - (id)init {
   [self doesNotRecognizeSelector:_cmd];
@@ -75,9 +72,9 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 
 	self = [super init];
 	if (self) {
-		algorithm_ = [algorithm copy];
-		secret_ = [secret copy];
-		digits_ = digits;
+		self.algorithm = algorithm;
+		self.secret = [secret copy];
+		self.digits = digits;
 	}
 	return self;
 }
@@ -92,16 +89,16 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 - (NSString *)generateOTPForCounter:(uint64_t)counter {
   CCHmacAlgorithm alg;
   NSUInteger hashLength = 0;
-  if ([algorithm_ isEqualToString:kOTPGeneratorSHA1Algorithm]) {
+  if ([self.algorithm isEqualToString:kOTPGeneratorSHA1Algorithm]) {
     alg = kCCHmacAlgSHA1;
     hashLength = CC_SHA1_DIGEST_LENGTH;
-  } else if ([algorithm_ isEqualToString:kOTPGeneratorSHA256Algorithm]) {
+  } else if ([self.algorithm isEqualToString:kOTPGeneratorSHA256Algorithm]) {
     alg = kCCHmacAlgSHA256;
     hashLength = CC_SHA256_DIGEST_LENGTH;
-  } else if ([algorithm_ isEqualToString:kOTPGeneratorSHA512Algorithm]) {
+  } else if ([self.algorithm isEqualToString:kOTPGeneratorSHA512Algorithm]) {
     alg = kCCHmacAlgSHA512;
     hashLength = CC_SHA512_DIGEST_LENGTH;
-  } else if ([algorithm_ isEqualToString:kOTPGeneratorSHAMD5Algorithm]) {
+  } else if ([self.algorithm isEqualToString:kOTPGeneratorSHAMD5Algorithm]) {
     alg = kCCHmacAlgMD5;
     hashLength = CC_MD5_DIGEST_LENGTH;
   } else {
@@ -115,7 +112,7 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
   NSData *counterData = [NSData dataWithBytes:&counter
                                        length:sizeof(counter)];
   CCHmacContext ctx;
-  CCHmacInit(&ctx, alg, [secret_ bytes], [secret_ length]);
+  CCHmacInit(&ctx, alg, [self.secret bytes], [self.secret length]);
   CCHmacUpdate(&ctx, [counterData bytes], [counterData length]);
   CCHmacFinal(&ctx, [hash mutableBytes]);
 
@@ -123,16 +120,16 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
   unsigned char offset = ptr[hashLength-1] & 0x0f;
   unsigned long truncatedHash =
     NSSwapBigLongToHost(*((unsigned long *)&ptr[offset])) & 0x7fffffff;
-  unsigned long pinValue = truncatedHash % kPinModTable[digits_];
+  unsigned long pinValue = truncatedHash % kPinModTable[self.digits];
 
-  OTPDevLog(@"secret: %@", secret_);
+  OTPDevLog(@"secret: %@", self.secret);
   OTPDevLog(@"counter: %llu", counter);
   OTPDevLog(@"hash: %@", hash);
   OTPDevLog(@"offset: %d", offset);
   OTPDevLog(@"truncatedHash: %lu", truncatedHash);
   OTPDevLog(@"pinValue: %lu", pinValue);
 
-  return [NSString stringWithFormat:@"%0*lu", (int)digits_, pinValue];
+  return [NSString stringWithFormat:@"%0*lu", self.digits, pinValue];
 }
 
 @end

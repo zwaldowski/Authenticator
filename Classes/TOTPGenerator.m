@@ -20,11 +20,10 @@
 #import "OTPDefines.h"
 
 @interface TOTPGenerator ()
-@property(assign, nonatomic, readwrite) NSTimeInterval period;
+@property (nonatomic, readwrite) NSTimeInterval period;
 @end
 
 @implementation TOTPGenerator
-@synthesize period = period_;
 
 + (NSTimeInterval)defaultPeriod {
   return 30;
@@ -32,7 +31,7 @@
 
 - (id)initWithSecret:(NSData *)secret
            algorithm:(NSString *)algorithm
-			  digits:(uint32_t)digits
+              digits:(uint32_t)digits
               period:(NSTimeInterval)period {
 	if (period <= 0 || period > 300) {
 		OTPDevLog(@"Bad Period: %f", period);

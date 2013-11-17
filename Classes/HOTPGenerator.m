@@ -18,9 +18,13 @@
 
 #import "HOTPGenerator.h"
 
+@interface HOTPGenerator ()
+
+@property (readwrite) uint64_t counter;
+
+@end
 
 @implementation HOTPGenerator
-@synthesize counter = counter_;
 
 + (NSInteger)defaultInitialCounter {
   return 1;
@@ -29,17 +33,15 @@
 - (id)initWithSecret:(NSData *)secret algorithm:(NSString *)algorithm digits:(uint32_t)digits counter:(NSInteger)counter {
 	self = [super initWithSecret:secret algorithm:algorithm digits:digits];
 	if (self) {
-		counter_ = counter;
+		_counter = counter;
 	}
 	return self;
 }
 
 - (NSString *)generateOTP {
-  NSUInteger counter = [self counter];
-  counter += 1;
-  NSString *otp = [super generateOTPForCounter:counter];
-  [self setCounter:counter];
-  return otp;
+	self.counter++;
+	NSString *otp = [super generateOTPForCounter:_counter];
+	return otp;
 }
 
 @end

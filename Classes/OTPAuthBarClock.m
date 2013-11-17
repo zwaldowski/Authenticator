@@ -27,9 +27,6 @@
 
 @implementation OTPAuthBarClock
 
-@synthesize timer = timer_;
-@synthesize period = period_;
-
 - (id)initWithFrame:(CGRect)frame period:(NSTimeInterval)period {
   if ((self = [super initWithFrame:frame])) {
     [self startUpTimer];
@@ -50,12 +47,11 @@
 }
 
 - (void)dealloc {
-  NSAssert(!self.timer, @"Need to call invalidate on clock!");
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)redrawTimer:(NSTimer *)timer {
-  [self setNeedsDisplay];
+	[self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -143,6 +139,15 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   [self invalidate];
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+	[super willMoveToSuperview:newSuperview];
+	
+	if (!newSuperview) {
+		[self invalidate];
+	}
 }
 
 @end

@@ -47,14 +47,6 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 @end
 
 @implementation OTPAuthAppDelegate
-@synthesize window = window_;
-@synthesize navigationController = navigationController_;
-@synthesize authURLs = authURLs_;
-@synthesize rootViewController = rootViewController_;
-@synthesize editButton = editButton_;
-@synthesize editingState = editingState_;
-@synthesize urlAddAlert = urlAddAlert_;
-@synthesize urlBeingAdded = urlBeingAdded_;
 
 - (void)updateUI {
   BOOL hidden = YES;
@@ -345,7 +337,5 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 #pragma mark -
 
 @implementation OTPGoodTokenSheet
-
-@synthesize authURL = authURL_;
 
 @end
