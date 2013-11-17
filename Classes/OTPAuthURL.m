@@ -511,7 +511,7 @@ static NSString *const TOTPAuthURLTimerNotification
     uint64_t counter;
     BOOL goodScan = [scanner gtm_scanUnsignedLongLong:&counter];
     // Good scan should always be good based on the isValidCounter check above.
-    _GTMDevAssert(goodScan, @"goodscan should be true: %c", goodScan);
+    NSAssert(goodScan, @"goodscan should be true: %c", goodScan);
     HOTPGenerator *generator
       = [[[HOTPGenerator alloc] initWithSecret:secret
                                      algorithm:algorithm

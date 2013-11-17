@@ -17,7 +17,6 @@
 //
 
 #import "OTPAuthAppDelegate.h"
-#import "GTMDefines.h"
 #import "OTPAuthURL.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
@@ -295,7 +294,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)tableView:(UITableView*)tableView
     willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-  _GTMDevAssert(self.editingState == kOTPNotEditing, @"Should not be editing");
+  NSAssert(self.editingState == kOTPNotEditing, @"Should not be editing");
   OTPTableViewCell *cell
       = (OTPTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
   [cell willBeginEditing];
@@ -304,7 +303,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)tableView:(UITableView*)tableView
    didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-  _GTMDevAssert(self.editingState == kOTPEditingSingleRow, @"Must be editing single row");
+  NSAssert(self.editingState == kOTPEditingSingleRow, @"Must be editing single row");
   OTPTableViewCell *cell
       = (OTPTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
   [cell didEndEditing];
@@ -349,7 +348,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)alertView:(UIAlertView *)alertView
     clickedButtonAtIndex:(NSInteger)buttonIndex {
-  _GTMDevAssert(alertView == self.urlAddAlert, @"Unexpected Alert");
+  NSAssert(alertView == self.urlAddAlert, @"Unexpected Alert");
   if (buttonIndex == 1) {
     [self authURLEntryController:nil
                 didCreateAuthURL:self.urlBeingAdded];

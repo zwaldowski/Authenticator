@@ -23,7 +23,6 @@
 #import "UIColor+MobileColors.h"
 #import "OTPAuthBarClock.h"
 #import "TOTPGenerator.h"
-#import "GTMLocalizedString.h"
 
 @interface RootViewController ()
 @property(nonatomic, readwrite, retain) OTPAuthBarClock *clock;
