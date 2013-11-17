@@ -122,6 +122,13 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = ZXingWidget;
 		};
+		DBD09F9618388602002B103D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
+			remoteInfo = ZXingTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -588,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF23A2D13D4ED3800F3FD82 /* libZXingWidget.a */,
+				DBD09F9718388602002B103D /* ZXingTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -646,7 +654,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OTPAuth" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -731,6 +739,13 @@
 			fileType = archive.ar;
 			path = libZXingWidget.a;
 			remoteRef = 8BF23A2C13D4ED3800F3FD82 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DBD09F9718388602002B103D /* ZXingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZXingTests.octest;
+			remoteRef = DBD09F9618388602002B103D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1070,6 +1085,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				"GOOGLE_IPHONE_ENTERPRISE_CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Entitlements.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
