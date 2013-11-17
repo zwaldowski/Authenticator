@@ -115,17 +115,17 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       NSDictionary *query = [url otp_dictionaryWithQueryArguments];
 
       // Optional algorithm=(SHA1|SHA256|SHA512|MD5) defaults to SHA1
-      NSString *algorithm = [query objectForKey:kQueryAlgorithmKey];
+      NSString *algorithm = query[kQueryAlgorithmKey];
       if (!algorithm) {
         algorithm = [OTPGenerator defaultAlgorithm];
       }
       if (!secret) {
         // Required secret=Base32EncodedKey
-        NSString *secretString = [query objectForKey:kQuerySecretKey];
+        NSString *secretString = query[kQuerySecretKey];
         secret = [[NSData alloc] otp_initWithBase32EncodedString:secretString options:OTPDataBase32DecodingCaseInsensitive|OTPDataBase32DecodingIgnoreSpaces];
       }
       // Optional digits=[68] defaults to 8
-      NSString *digitString = [query objectForKey:kQueryDigitsKey];
+      NSString *digitString = query[kQueryDigitsKey];
       NSUInteger digits = 0;
       if (!digitString) {
         digits = [OTPGenerator defaultDigits];
@@ -170,8 +170,8 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 }
 
 + (OTPAuthURL *)authURLWithKeychainDictionary:(NSDictionary *)dict {
-  NSData *urlData = [dict objectForKey:(__bridge id)kSecAttrGeneric];
-  NSData *secretData = [dict objectForKey:(__bridge id)kSecValueData];
+  NSData *urlData = dict[(__bridge id)kSecAttrGeneric];
+  NSData *secretData = dict[(__bridge id)kSecValueData];
   NSString *urlString = [[NSString alloc] initWithData:urlData
                                                encoding:NSUTF8StringEncoding];
   NSURL *url = [NSURL URLWithString:urlString];
@@ -213,19 +213,17 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
   OSStatus status;
 
   if ([self isInKeychain]) {
-    NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
-                           self.keychainItemRef, (__bridge id)kSecValuePersistentRef,
-                           nil];
+    NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+                           (__bridge id)kSecValuePersistentRef: self.keychainItemRef};
 
     status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)attributes);
 
     OTPDevLog(@"SecItemUpdate(%@, %@) = %ld", query, attributes, status);
   } else {
-    [attributes setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
-    [attributes setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnPersistentRef];
-    [attributes setObject:self.generator.secret forKey:(__bridge id)kSecValueData];
-    [attributes setObject:kOTPService forKey:(__bridge id)kSecAttrService];
+    attributes[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
+    attributes[(__bridge id)kSecReturnPersistentRef] = (id)kCFBooleanTrue;
+    attributes[(__bridge id)kSecValueData] = self.generator.secret;
+    attributes[(__bridge id)kSecAttrService] = kOTPService;
 	  CFDataRef ref = NULL;
 
     // The name here has to be unique or else we will get a errSecDuplicateItem
@@ -235,7 +233,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
     // We do not display this name to the user, so anything will do.
     NSString *name = self.name;
     for (int i = 0; i < 1000; i++) {
-      [attributes setObject:name forKey:(__bridge id)kSecAttrAccount];
+      attributes[(__bridge id)kSecAttrAccount] = name;
       status = SecItemAdd((__bridge CFDictionaryRef)attributes, (CFTypeRef *)&ref);
       if (status == errSecDuplicateItem) {
         name = [NSString stringWithFormat:@"%@.%ld", self.name, random()];
@@ -257,10 +255,8 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
   if (![self isInKeychain]) {
     return NO;
   }
-  NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                         (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
-                         [self keychainItemRef], (__bridge id)kSecValuePersistentRef,
-                         nil];
+  NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+                         (__bridge id)kSecValuePersistentRef: [self keychainItemRef]};
   OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
 
   OTPDevLog(@"SecItemDelete(%@) = %ld", query, status);
@@ -364,7 +360,7 @@ static NSString *const TOTPAuthURLTimerNotification
          algorithm:(NSString *)algorithm
             digits:(NSUInteger)digits
              query:(NSDictionary *)query {
-  NSString *periodString = [query objectForKey:kQueryPeriodKey];
+  NSString *periodString = query[kQueryPeriodKey];
   NSTimeInterval period = 0;
   if (periodString) {
     period = [periodString doubleValue];
@@ -397,7 +393,7 @@ static NSString *const TOTPAuthURLTimerNotification
   TOTPGenerator *generator = (TOTPGenerator *)[self generator];
   NSTimeInterval delta = [[NSDate date] timeIntervalSince1970];
   NSTimeInterval period = [generator period];
-  uint64_t progress = (uint64_t)delta % (uint64_t)period;
+  NSTimeInterval progress = (NSTimeInterval)((uint64_t)delta % (uint64_t)period);
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   if (progress == 0 || progress > self.lastProgress) {
     [nc postNotificationName:OTPAuthURLDidGenerateNewOTPNotification object:self];
@@ -405,10 +401,8 @@ static NSString *const TOTPAuthURLTimerNotification
     self.warningSent = NO;
   } else if (progress > period - self.generationAdvanceWarning
              && !self.warningSent) {
-    NSNumber *warning = [NSNumber numberWithInt:ceil(period - progress)];
     NSDictionary *userInfo
-      = [NSDictionary dictionaryWithObject:warning
-                                    forKey:OTPAuthURLSecondsBeforeNewOTPKey];
+      = @{OTPAuthURLSecondsBeforeNewOTPKey: @(ceil(progress))};
 
     [nc postNotificationName:OTPAuthURLWillGenerateNewOTPWarningNotification
                       object:self
@@ -425,19 +419,18 @@ static NSString *const TOTPAuthURLTimerNotification
 
   NSString *algorithm = [generator algorithm];
   if (![algorithm isEqualToString:[generatorClass defaultAlgorithm]]) {
-    [query setObject:algorithm forKey:kQueryAlgorithmKey];
+    query[kQueryAlgorithmKey] = algorithm;
   }
 
   NSUInteger digits = [generator digits];
   if (digits != [generatorClass defaultDigits]) {
-    id val = [NSNumber numberWithUnsignedInteger:digits];
-    [query setObject:val forKey:kQueryDigitsKey];
+    id val = @(digits);
+    query[kQueryDigitsKey] = val;
   }
 
   NSTimeInterval period = [generator period];
   if (fpclassify(period - [generatorClass defaultPeriod]) != FP_ZERO) {
-    id val = [NSNumber numberWithUnsignedInteger:period];
-    [query setObject:val forKey:kQueryPeriodKey];
+    query[kQueryPeriodKey] = @(period);
   }
 
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://totp/%@?%@",
@@ -476,7 +469,7 @@ static NSString *const TOTPAuthURLTimerNotification
          algorithm:(NSString *)algorithm
             digits:(NSUInteger)digits
              query:(NSDictionary *)query {
-  NSString *counterString = [query objectForKey:kQueryCounterKey];
+  NSString *counterString = query[kQueryCounterKey];
   if ([[self class] isValidCounter:counterString]) {
     NSScanner *scanner = [NSScanner scannerWithString:counterString];
     uint64_t counter;
@@ -511,18 +504,18 @@ static NSString *const TOTPAuthURLTimerNotification
 
   NSString *algorithm = [generator algorithm];
   if (![algorithm isEqualToString:[generatorClass defaultAlgorithm]]) {
-    [query setObject:algorithm forKey:kQueryAlgorithmKey];
+    query[kQueryAlgorithmKey] = algorithm;
   }
 
   NSUInteger digits = [generator digits];
   if (digits != [generatorClass defaultDigits]) {
-    id val = [NSNumber numberWithUnsignedInteger:digits];
-    [query setObject:val forKey:kQueryDigitsKey];
+    id val = @(digits);
+    query[kQueryDigitsKey] = val;
   }
 
   uint64_t counter = [generator counter];
-  id val = [NSNumber numberWithUnsignedLongLong:counter];
-  [query setObject:val forKey:kQueryCounterKey];
+  id val = @(counter);
+  query[kQueryCounterKey] = val;
 
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://hotp/%@?%@",
                                                          kOTPAuthScheme,

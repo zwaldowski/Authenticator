@@ -318,7 +318,7 @@
 - (void)otpAuthURLWillGenerateNewOTP:(NSNotification *)notification {
   NSDictionary *userInfo = [notification userInfo];
   NSNumber *nsSeconds
-    = [userInfo objectForKey:OTPAuthURLSecondsBeforeNewOTPKey];
+    = userInfo[OTPAuthURLSecondsBeforeNewOTPKey];
   NSUInteger seconds = [nsSeconds unsignedIntegerValue];
   self.frontWarningLabel.alpha = 0;
   self.frontWarningLabel.hidden = NO;

@@ -171,7 +171,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
     UIToolbar *toolbar = self.navigationController.toolbar;
     NSMutableArray *items = [NSMutableArray arrayWithArray:toolbar.items];
     // We are replacing our "proxy edit button" with a real one.
-    [items replaceObjectAtIndex:0 withObject:self.editButton];
+    items[0] = self.editButton;
     toolbar.items = items;
 
     [self updateUI];
@@ -188,7 +188,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
   // See otp_tableViewWillBeginEditing for comments on why this is being done.
   NSUInteger idx = self.editingState == kOTPEditingTable ? [indexPath row] : [indexPath section];
-  OTPAuthURL *url = [self.authURLs objectAtIndex:idx];
+  OTPAuthURL *url = (self.authURLs)[idx];
   if ([url isMemberOfClass:[HOTPAuthURL class]]) {
     cellIdentifier = @"HOTPCell";
     cellClass = [HOTPTableViewCell class];
@@ -235,12 +235,12 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
     [cell didEndEditing];
     [tableView beginUpdates];
     NSUInteger idx = self.editingState == kOTPEditingTable ? [indexPath row] : [indexPath section];
-    OTPAuthURL *authURL = [self.authURLs objectAtIndex:idx];
+    OTPAuthURL *authURL = (self.authURLs)[idx];
 
     // See otp_tableViewWillBeginEditing for comments on why this is being done.
     if (self.editingState == kOTPEditingTable) {
       NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
-      NSArray *rows = [NSArray arrayWithObject:path];
+      NSArray *rows = @[path];
       [tableView deleteRowsAtIndexPaths:rows
                        withRowAnimation:UITableViewRowAnimationFade];
     } else {

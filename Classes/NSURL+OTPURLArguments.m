@@ -49,7 +49,7 @@
         if (!key) key = @"";
         if (!val) val = @"";
         
-        [parameters setObject:val forKey:key];
+        parameters[key] = val;
     }];
     
     return [parameters copy];

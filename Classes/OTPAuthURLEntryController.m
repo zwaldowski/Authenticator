@@ -143,7 +143,7 @@
   NSDictionary* info = [aNotification userInfo];
   CGFloat offset = 0;
     
-  NSValue *sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+  NSValue *sizeValue = info[UIKeyboardFrameBeginUserInfoKey];
   CGSize keyboardSize = [sizeValue CGRectValue].size;
   BOOL isLandscape = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
   offset = isLandscape ? keyboardSize.width : keyboardSize.height;
