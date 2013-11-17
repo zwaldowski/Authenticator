@@ -62,21 +62,7 @@
   view.delegate = self.delegate;
   view.backgroundColor = [UIColor googleBlueBackgroundColor];
 
-  UIButton *titleButton = [[[UIButton alloc] init] autorelease];
-  [titleButton setImage:[UIImage imageNamed:@"GoogleNavBarLogo.png"]
-               forState:UIControlStateNormal];
-  [titleButton setTitle:GTMLocalizedString(@"Authenticator", nil)
-               forState:UIControlStateNormal];
-  UILabel *titleLabel = [titleButton titleLabel];
-  titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
-  titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-  [titleButton setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.5]
-                          forState:UIControlStateNormal];
-  titleButton.adjustsImageWhenHighlighted = NO;
-  [titleButton sizeToFit];
-
   UINavigationItem *navigationItem = self.navigationItem;
-  navigationItem.titleView = titleButton;
   self.clock = [[[OTPAuthBarClock alloc] initWithFrame:CGRectMake(0,0,30,30)
                                                 period:[TOTPGenerator defaultPeriod]] autorelease];
   UIBarButtonItem *clockItem
