@@ -36,8 +36,6 @@
 		8B73DCF41182656200861C87 /* HOTPGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B73DCEF1182656200861C87 /* HOTPGenerator.m */; };
 		8B73DCF51182656200861C87 /* OTPAuthURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B73DCF11182656200861C87 /* OTPAuthURL.m */; };
 		8B73DCF61182656200861C87 /* TOTPGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B73DCF31182656200861C87 /* TOTPGenerator.m */; };
-		8B80987113D4FDB500D4FCC8 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF23A2D13D4ED3800F3FD82 /* libZXingWidget.a */; };
-		8B8098E613D4FED600D4FCC8 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8098E513D4FED600D4FCC8 /* libstdc++.dylib */; };
 		8B80995E13D500E200D4FCC8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B80995D13D500E200D4FCC8 /* SenTestingKit.framework */; };
 		8BBC772113BA945D006B3033 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2B877C118B904000437315 /* Security.framework */; };
 		8BC958E8128B5DB500A0E8F2 /* Icon_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC958E4128B5DB500A0E8F2 /* Icon_2x.png */; };
@@ -73,30 +71,6 @@
 		DBD09FA118388C8A002B103D /* Refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09FA018388C8A002B103D /* Refresh@2x.png */; };
 		DBD09FA318389377002B103D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09FA218389377002B103D /* Default@2x.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8BF23A2C13D4ED3800F3FD82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = ZXingWidget;
-		};
-		8BF23A2E13D4ED5200F3FD82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = ZXingWidget;
-		};
-		DBD09F9618388602002B103D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
-			remoteInfo = ZXingTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D3623240D0F684500981E51 /* OTPAuthAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthAppDelegate.h; sourceTree = "<group>"; };
@@ -244,14 +218,10 @@
 		8BE5CF5411AB441D00A20746 /* OTPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPTableViewCell.xib; sourceTree = "<group>"; };
 		8BE5CF7111AB48F700A20746 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		8BE5D80811AC824500A20746 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8BF23A6213D4EECB00F3FD82 /* DecoderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DecoderDelegate.h; path = ZXingWidget/Classes/DecoderDelegate.h; sourceTree = "<group>"; };
-		8BF23A6913D4EEFA00F3FD82 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Decoder.h; path = ZXingWidget/Classes/Decoder.h; sourceTree = "<group>"; };
-		8BF23A6A13D4EEFA00F3FD82 /* TwoDDecoderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwoDDecoderResult.h; path = ZXingWidget/Classes/TwoDDecoderResult.h; sourceTree = "<group>"; };
 		8BF23A7013D4EF7000F3FD82 /* UIColor+MobileColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MobileColors.h"; sourceTree = "<group>"; };
 		8BF23A7113D4EF7000F3FD82 /* UIColor+MobileColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MobileColors.m"; sourceTree = "<group>"; };
 		8BF5054F1186272B005C936F /* OTPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPTableViewCell.h; sourceTree = "<group>"; };
 		8BF505501186272B005C936F /* OTPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPTableViewCell.m; sourceTree = "<group>"; };
-		8BF508691186346F005C936F /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		8BF5098011863B35005C936F /* OTPAuthAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthAboutController.h; sourceTree = "<group>"; };
 		8BF5098111863B35005C936F /* OTPAuthAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthAboutController.m; sourceTree = "<group>"; };
 		8BF50E021186512E005C936F /* OTPWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPWelcomeViewController.h; sourceTree = "<group>"; };
@@ -289,7 +259,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B80987113D4FDB500D4FCC8 /* libZXingWidget.a in Frameworks */,
 				8B2B86FE118B8FA000437315 /* UIKit.framework in Frameworks */,
 				8B2B8728118B900E00437315 /* CoreFoundation.framework in Frameworks */,
 				8B2B8755118B902200437315 /* CoreGraphics.framework in Frameworks */,
@@ -297,7 +266,6 @@
 				8BE5D80911AC824500A20746 /* MobileCoreServices.framework in Frameworks */,
 				8B3F0F5A122F2003009A6409 /* AVFoundation.framework in Frameworks */,
 				8BBC772113BA945D006B3033 /* Security.framework in Frameworks */,
-				8B8098E613D4FED600D4FCC8 /* libstdc++.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +347,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8BF50835118633BB005C936F /* zxing */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -446,35 +413,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8B2B8ABD118BA42700437315 /* iphone */ = {
-			isa = PBXGroup;
-			children = (
-				8BF23A6913D4EEFA00F3FD82 /* Decoder.h */,
-				8BF23A6A13D4EEFA00F3FD82 /* TwoDDecoderResult.h */,
-				8BF23A6213D4EECB00F3FD82 /* DecoderDelegate.h */,
-				8BF508691186346F005C936F /* ZXingWidget.xcodeproj */,
-			);
-			path = iphone;
-			sourceTree = "<group>";
-		};
-		8BF23A2913D4ED3800F3FD82 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8BF23A2D13D4ED3800F3FD82 /* libZXingWidget.a */,
-				DBD09F9718388602002B103D /* ZXingTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8BF50835118633BB005C936F /* zxing */ = {
-			isa = PBXGroup;
-			children = (
-				8B2B8ABD118BA42700437315 /* iphone */,
-			);
-			name = zxing;
-			path = externals/zxing;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -489,7 +427,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8BF23A2F13D4ED5200F3FD82 /* PBXTargetDependency */,
 			);
 			name = OTPAuth;
 			productName = OTPAuth;
@@ -583,12 +520,6 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8BF23A2913D4ED3800F3FD82 /* Products */;
-					ProjectRef = 8BF508691186346F005C936F /* ZXingWidget.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* OTPAuth */,
@@ -596,23 +527,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8BF23A2D13D4ED3800F3FD82 /* libZXingWidget.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libZXingWidget.a;
-			remoteRef = 8BF23A2C13D4ED3800F3FD82 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DBD09F9718388602002B103D /* ZXingTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ZXingTests.octest;
-			remoteRef = DBD09F9618388602002B103D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -706,14 +620,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8BF23A2F13D4ED5200F3FD82 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZXingWidget;
-			targetProxy = 8BF23A2E13D4ED5200F3FD82 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8B00BE9913748ABA00B36076 /* LegalNotices.html */ = {

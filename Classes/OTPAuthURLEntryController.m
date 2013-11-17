@@ -18,17 +18,16 @@
 
 #import "OTPAuthURLEntryController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "OTPDefines.h"
 #import "OTPAuthURL.h"
 #import "NSString+OTPURLArguments.h"
 #import "NSData+OTPBase32Encoding.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
-#import "Decoder.h"
-#import "TwoDDecoderResult.h"
 #import "OTPScannerOverlayView.h"
 #import "UIColor+MobileColors.h"
 
-@interface OTPAuthURLEntryController ()
+@interface OTPAuthURLEntryController () <AVCaptureMetadataOutputObjectsDelegate>
 @property(nonatomic, readwrite, assign) UITextField *activeTextField;
 @property(nonatomic, readwrite, assign) UIBarButtonItem *doneButtonItem;
 @property(nonatomic, readwrite, retain) Decoder *decoder;
@@ -125,8 +124,6 @@
   self.doneButtonItem
     = self.navigationController.navigationBar.topItem.rightBarButtonItem;
   self.doneButtonItem.enabled = NO;
-  self.decoder = [[[Decoder alloc] init] autorelease];
-  self.decoder.delegate = self;
   self.scrollView.backgroundColor = [UIColor googleBlueBackgroundColor];
 
   // Hide the Scan button if we don't have a camera that will support video.
@@ -260,33 +257,34 @@
 - (IBAction)cancel:(id)sender {
   self.handleCapture = NO;
   [self.avSession stopRunning];
-  [self dismissViewControllerAnimated:NO completion:NULL];
+  [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)scanBarcode:(id)sender {
+- (IBAction)scanBarcode:(UIButton *)sender {
   if (!self.avSession) {
-    self.avSession = [[[AVCaptureSession alloc] init] autorelease];
-    AVCaptureDevice *device =
-      [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *captureInput =
-      [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-    [self.avSession addInput:captureInput];
-    dispatch_queue_t queue = dispatch_queue_create("OTPAuthURLEntryController",
-                                                   0);
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError *error = nil;
+      
+    AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    if (captureInput) {
+      [session addInput:captureInput];
+    } else {
+      OTPDevLog(@"AV session error: %@", error);
+      sender.enabled = NO;
+      return;
+    }
+      
+    dispatch_queue_t queue = dispatch_queue_create("OTPAuthURLEntryController", 0);
     self.queue = queue;
     dispatch_release(queue);
-    AVCaptureVideoDataOutput *captureOutput =
-      [[[AVCaptureVideoDataOutput alloc] init] autorelease];
-    [captureOutput setAlwaysDiscardsLateVideoFrames:YES];
-    [captureOutput setMinFrameDuration:CMTimeMake(5,1)];  // At most 5 frames/sec.
-    [captureOutput setSampleBufferDelegate:self
-                                     queue:self.queue];
-    NSNumber *bgra = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA];
-    NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   bgra, kCVPixelBufferPixelFormatTypeKey,
-                                   nil];
-    [captureOutput setVideoSettings:videoSettings];
-    [self.avSession addOutput:captureOutput];
+      
+    AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
+    [session addOutput:output];
+    [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    [output setMetadataObjectsDelegate:self queue:queue];
+
+    self.avSession = [session autorelease];
   }
 
   AVCaptureVideoPreviewLayer *previewLayer
@@ -341,41 +339,54 @@
   [self.avSession startRunning];
 }
 
-- (void)captureOutput:(AVCaptureOutput *)captureOutput
-didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-       fromConnection:(AVCaptureConnection *)connection {
-  if (!self.handleCapture) return;
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-  if (imageBuffer) {
-    CVReturn ret = CVPixelBufferLockBaseAddress(imageBuffer, 0);
-    if (ret == kCVReturnSuccess) {
-      uint8_t *base = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
-      size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-      size_t width = CVPixelBufferGetWidth(imageBuffer);
-      size_t height = CVPixelBufferGetHeight(imageBuffer);
-      CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-      CGContextRef context
-        = CGBitmapContextCreate(base, width, height, 8, bytesPerRow, colorSpace,
-                                kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-      CGColorSpaceRelease(colorSpace);
-      CGImageRef cgImage = CGBitmapContextCreateImage(context);
-      CGContextRelease(context);
-      UIImage *image = [UIImage imageWithCGImage:cgImage];
-      CFRelease(cgImage);
-      CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
-      [self.decoder performSelectorOnMainThread:@selector(decodeImage:)
-                                     withObject:image
-                                  waitUntilDone:NO];
-    } else {
-      NSLog(@"Unable to lock buffer %d", ret);
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
+{
+    AVMetadataMachineReadableCodeObject *QRCode = nil;
+    for (AVMetadataObject *metadata in metadataObjects) {
+        if ([metadata.type isEqualToString:AVMetadataObjectTypeQRCode]) {
+            // This will never happen; nobody has ever scanned a QR code... ever
+            QRCode = (AVMetadataMachineReadableCodeObject *)metadata;
+            break;
+        }
     }
-  } else {
-    NSLog(@"Unable to get imageBuffer from %@", sampleBuffer);
-  }
-  [pool release];
-}
+    
+    if (!QRCode) {
+        return;
+    }
+    
+    if (self.handleCapture) {
+        self.handleCapture = NO;
 
+        NSString *urlString = QRCode.stringValue;
+        NSURL *url = [NSURL URLWithString:urlString];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            OTPAuthURL *authURL = [OTPAuthURL authURLWithURL:url secret:nil];
+            [self.avSession stopRunning];
+            
+            if (authURL) {
+                [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
+            } else {
+                NSString *title = NSLocalizedString(@"Invalid Barcode",
+                                                    @"Alert title describing a bad barcode");
+                NSString *message = [NSString stringWithFormat:
+                                     NSLocalizedString(@"The barcode '%@' is not a valid "
+                                                       @"authentication token barcode.",
+                                                       @"Alert describing invalid barcode type."),
+                                     urlString];
+                NSString *button = NSLocalizedString(@"Try Again",
+                                                     @"Button title to try again");
+                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
+                                                                 message:message
+                                                                delegate:self
+                                                       cancelButtonTitle:button
+                                                       otherButtonTitles:nil]
+                                      autorelease];
+                [alert show];
+            }
+        });
+    }
+}
 
 #pragma mark -
 #pragma mark UITextField Delegate Methods
@@ -398,50 +409,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
   self.activeTextField = nil;
-}
-
-
-#pragma mark -
-#pragma mark DecoderDelegate
-
-- (void)decoder:(Decoder *)decoder
- didDecodeImage:(UIImage *)image
-    usingSubset:(UIImage *)subset
-     withResult:(TwoDDecoderResult *)twoDResult {
-  if (self.handleCapture) {
-    self.handleCapture = NO;
-    NSString *urlString = twoDResult.text;
-    NSURL *url = [NSURL URLWithString:urlString];
-    OTPAuthURL *authURL = [OTPAuthURL authURLWithURL:url
-                                              secret:nil];
-    [self.avSession stopRunning];
-    if (authURL) {
-      [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
-        [self dismissViewControllerAnimated:NO completion:NULL];
-    } else {
-      NSString *title = NSLocalizedString(@"Invalid Barcode",
-                                          @"Alert title describing a bad barcode");
-      NSString *message = [NSString stringWithFormat:
-                           NSLocalizedString(@"The barcode '%@' is not a valid "
-                                             @"authentication token barcode.",
-                                             @"Alert describing invalid barcode type."),
-                 urlString];
-      NSString *button = NSLocalizedString(@"Try Again",
-                                           @"Button title to try again");
-      UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
-                                                       message:message
-                                                      delegate:self
-                                             cancelButtonTitle:button
-                                             otherButtonTitles:nil]
-                            autorelease];
-      [alert show];
-    }
-  }
-}
-
-- (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image
-    usingSubset:(UIImage *)subset
-         reason:(NSString *)reason {
 }
 
 #pragma mark -

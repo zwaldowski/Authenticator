@@ -18,7 +18,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "DecoderDelegate.h"
 
 @class OTPAuthURL;
 @class Decoder;
@@ -27,9 +26,7 @@
 @interface OTPAuthURLEntryController : UIViewController
     <UITextFieldDelegate,
      UINavigationControllerDelegate,
-     DecoderDelegate,
-     UIAlertViewDelegate,
-     AVCaptureVideoDataOutputSampleBufferDelegate> {
+     UIAlertViewDelegate> {
  @private
   dispatch_queue_t queue_;
 }
