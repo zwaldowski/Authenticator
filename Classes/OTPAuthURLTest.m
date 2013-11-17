@@ -17,7 +17,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "NSDictionary+OTPURLArguments.h"
+#import "NSURL+OTPURLArguments.h"
 #import "NSString+OTPURLArguments.h"
 #import "HOTPGenerator.h"
 #import "OTPAuthURL.h"
@@ -193,8 +193,7 @@ static NSString *const kValidHOTPURL =
        kValidDigitsString, kQueryDigitsKey,
        kValidPeriodString, kQueryPeriodKey,
        nil];
-  STAssertEqualObjects([NSDictionary otp_dictionaryWithHttpArgumentsString:
-          [[url url] query]],
+  STAssertEqualObjects([[url url] otp_dictionaryWithQueryArguments],
                        result,
                        @"");
 
@@ -208,8 +207,7 @@ static NSString *const kValidHOTPURL =
        kValidDigitsString, kQueryDigitsKey,
        kValidCounterString, kQueryCounterKey,
        nil];
-  STAssertEqualObjects([NSDictionary otp_dictionaryWithHttpArgumentsString:
-          [[url2 url] query]],
+  STAssertEqualObjects([[url2 url] otp_dictionaryWithQueryArguments],
                        resultForHOTP,
                        @"");
 }

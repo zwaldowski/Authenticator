@@ -22,7 +22,7 @@
 
 #import "OTPDefines.h"
 
-#import "NSDictionary+OTPURLArguments.h"
+#import "NSURL+OTPURLArguments.h"
 #import "NSString+OTPURLArguments.h"
 #import "NSScanner+OTPUnsignedLongLong.h"
 #import "OTPStringEncoding.h"
@@ -114,8 +114,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       // Optional UTF-8 encoded human readable description (skip leading "/")
       NSString *name = [[url path] substringFromIndex:1];
 
-      NSDictionary *query =
-              [NSDictionary otp_dictionaryWithHttpArgumentsString:[url query]];
+	  NSDictionary *query = [url otp_dictionaryWithQueryArguments];
 
       // Optional algorithm=(SHA1|SHA256|SHA512|MD5) defaults to SHA1
       NSString *algorithm = [query objectForKey:kQueryAlgorithmKey];
@@ -465,7 +464,7 @@ static NSString *const TOTPAuthURLTimerNotification
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://totp/%@?%@",
                                                          kOTPAuthScheme,
                                                          [self.name otp_stringByEscapingForURLArgument],
-                                                         [query otp_httpArgumentsString]]];
+														 [NSURL otp_queryArgumentsForDictionary:query]]];
 }
 
 @end
@@ -559,7 +558,7 @@ static NSString *const TOTPAuthURLTimerNotification
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://hotp/%@?%@",
                                                          kOTPAuthScheme,
                                                          [[self name] otp_stringByEscapingForURLArgument],
-                                                         [query otp_httpArgumentsString]]];
+														 [NSURL otp_queryArgumentsForDictionary:query]]];
 }
 
 + (BOOL)isValidCounter:(NSString *)counter {
