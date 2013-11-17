@@ -20,6 +20,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "OTPAuthURL.h"
 #import "NSString+OTPURLArguments.h"
+#import "NSData+OTPBase32Encoding.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
 #import "Decoder.h"
@@ -213,7 +214,7 @@
   [self.activeTextField resignFirstResponder];
 
   NSString *encodedSecret = self.accountKey.text;
-  NSData *secret = [OTPAuthURL base32Decode:encodedSecret];
+  NSData *secret = [[NSData alloc] otp_initWithBase32EncodedString:encodedSecret options:OTPDataBase32DecodingCaseInsensitive|OTPDataBase32DecodingIgnoreSpaces];
 
   if ([secret length]) {
     Class authURLClass = Nil;

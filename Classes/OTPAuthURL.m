@@ -25,7 +25,7 @@
 #import "NSURL+OTPURLArguments.h"
 #import "NSString+OTPURLArguments.h"
 #import "NSScanner+OTPUnsignedLongLong.h"
-#import "OTPStringEncoding.h"
+#import "NSData+OTPBase32Encoding.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
 
@@ -114,7 +114,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       // Optional UTF-8 encoded human readable description (skip leading "/")
       NSString *name = [[url path] substringFromIndex:1];
 
-	  NSDictionary *query = [url otp_dictionaryWithQueryArguments];
+      NSDictionary *query = [url otp_dictionaryWithQueryArguments];
 
       // Optional algorithm=(SHA1|SHA256|SHA512|MD5) defaults to SHA1
       NSString *algorithm = [query objectForKey:kQueryAlgorithmKey];
@@ -124,7 +124,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
       if (!secret) {
         // Required secret=Base32EncodedKey
         NSString *secretString = [query objectForKey:kQuerySecretKey];
-        secret = [OTPAuthURL base32Decode:secretString];
+        secret = [[NSData alloc] otp_initWithBase32EncodedString:secretString options:OTPDataBase32DecodingCaseInsensitive|OTPDataBase32DecodingIgnoreSpaces];
       }
       // Optional digits=[68] defaults to 8
       NSString *digitString = [query objectForKey:kQueryDigitsKey];
@@ -180,14 +180,6 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
                          autorelease];
   NSURL *url = [NSURL URLWithString:urlString];
   return  [self authURLWithURL:url secret:secretData];
-}
-
-+ (NSData *)base32Decode:(NSString *)string {
-    return [[OTPStringEncoding base32CaseInsensitiveStringEncoding] decode:string];
-}
-
-+ (NSString *)encodeBase32:(NSData *)data {
-    return [[OTPStringEncoding base32CaseInsensitiveStringEncoding] encode:data];
 }
 
 - (id)initWithOTPGenerator:(OTPGenerator *)generator
@@ -374,8 +366,8 @@ static NSString *const TOTPAuthURLTimerNotification
   if ([url host]) {
     [name appendFormat:@"@%@", [url host]];
   }
-
-  NSData *secret = [OTPAuthURL base32Decode:[url fragment]];
+    
+  NSData *secret = [[NSData alloc] otp_initWithBase32EncodedString:url.fragment options:OTPDataBase32DecodingCaseInsensitive|OTPDataBase32DecodingIgnoreSpaces];
   return [self initWithSecret:secret name:name];
 }
 
@@ -464,7 +456,7 @@ static NSString *const TOTPAuthURLTimerNotification
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://totp/%@?%@",
                                                          kOTPAuthScheme,
                                                          [self.name otp_stringByEscapingForURLArgument],
-														 [NSURL otp_queryArgumentsForDictionary:query]]];
+                                                         [NSURL otp_queryArgumentsForDictionary:query]]];
 }
 
 @end
@@ -558,7 +550,7 @@ static NSString *const TOTPAuthURLTimerNotification
   return [NSURL URLWithString:[NSString stringWithFormat:@"%@://hotp/%@?%@",
                                                          kOTPAuthScheme,
                                                          [[self name] otp_stringByEscapingForURLArgument],
-														 [NSURL otp_queryArgumentsForDictionary:query]]];
+                                                         [NSURL otp_queryArgumentsForDictionary:query]]];
 }
 
 + (BOOL)isValidCounter:(NSString *)counter {
