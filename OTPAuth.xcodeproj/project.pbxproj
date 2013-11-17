@@ -59,7 +59,6 @@
 		8BF51059118748C7005C936F /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF5104D118748C7005C936F /* RootViewController.xib */; };
 		DB4404611838A901000F898B /* OTPDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4404601838A901000F898B /* OTPDrawing.m */; };
 		DB44046A1838A917000F898B /* NSString+OTPURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4404691838A917000F898B /* NSString+OTPURLArguments.m */; };
-		DB44046D1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = DB44046C1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.m */; };
 		DB44047218394869000F898B /* NSURL+OTPURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = DB44047118394869000F898B /* NSURL+OTPURLArguments.m */; };
 		DB44047618394CE7000F898B /* NSData+OTPBase32Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DB44047518394CE7000F898B /* NSData+OTPBase32Encoding.m */; };
 		DBD09F9918388625002B103D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD09F9818388625002B103D /* Default-568h@2x.png */; };
@@ -235,8 +234,6 @@
 		DB4404601838A901000F898B /* OTPDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPDrawing.m; sourceTree = "<group>"; };
 		DB4404681838A917000F898B /* NSString+OTPURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OTPURLArguments.h"; sourceTree = "<group>"; };
 		DB4404691838A917000F898B /* NSString+OTPURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OTPURLArguments.m"; sourceTree = "<group>"; };
-		DB44046B1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+OTPUnsignedLongLong.h"; sourceTree = "<group>"; };
-		DB44046C1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+OTPUnsignedLongLong.m"; sourceTree = "<group>"; };
 		DB44047018394869000F898B /* NSURL+OTPURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+OTPURLArguments.h"; sourceTree = "<group>"; };
 		DB44047118394869000F898B /* NSURL+OTPURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+OTPURLArguments.m"; sourceTree = "<group>"; };
 		DB44047418394CE7000F898B /* NSData+OTPBase32Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OTPBase32Encoding.h"; sourceTree = "<group>"; };
@@ -291,8 +288,6 @@
 				DB44047118394869000F898B /* NSURL+OTPURLArguments.m */,
 				DB44047418394CE7000F898B /* NSData+OTPBase32Encoding.h */,
 				DB44047518394CE7000F898B /* NSData+OTPBase32Encoding.m */,
-				DB44046B1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.h */,
-				DB44046C1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.m */,
 				8BF23A7013D4EF7000F3FD82 /* UIColor+MobileColors.h */,
 				8BF23A7113D4EF7000F3FD82 /* UIColor+MobileColors.m */,
 				8B0022DE11E7BF800092DE18 /* OTPTableView.h */,
@@ -583,7 +578,6 @@
 				8B73DCF41182656200861C87 /* HOTPGenerator.m in Sources */,
 				8B73DCF51182656200861C87 /* OTPAuthURL.m in Sources */,
 				8B73DCF61182656200861C87 /* TOTPGenerator.m in Sources */,
-				DB44046D1838AA71000F898B /* NSScanner+OTPUnsignedLongLong.m in Sources */,
 				8BF505511186272B005C936F /* OTPTableViewCell.m in Sources */,
 				8BF5098311863B35005C936F /* OTPAuthAboutController.m in Sources */,
 				8BF50E051186512E005C936F /* OTPWelcomeViewController.m in Sources */,

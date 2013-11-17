@@ -24,7 +24,6 @@
 
 #import "NSURL+OTPURLArguments.h"
 #import "NSString+OTPURLArguments.h"
-#import "NSScanner+OTPUnsignedLongLong.h"
 #import "NSData+OTPBase32Encoding.h"
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
@@ -494,7 +493,7 @@ static NSString *const TOTPAuthURLTimerNotification
   if ([[self class] isValidCounter:counterString]) {
     NSScanner *scanner = [NSScanner scannerWithString:counterString];
     uint64_t counter;
-    BOOL goodScan = [scanner otp_scanUnsignedLongLong:&counter];
+    BOOL goodScan = [scanner scanUnsignedLongLong:&counter];
     // Good scan should always be good based on the isValidCounter check above.
     NSAssert(goodScan, @"goodscan should be true: %c", goodScan);
     HOTPGenerator *generator
