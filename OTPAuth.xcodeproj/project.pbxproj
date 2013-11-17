@@ -290,7 +290,6 @@
 		8B2B89B7118B967A00437315 /* TOTPGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOTPGeneratorTest.m; sourceTree = "<group>"; };
 		8B2B89BE118B968900437315 /* OTPAuthURLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURLTest.m; sourceTree = "<group>"; };
 		8B2B8A62118B9FF400437315 /* GTMNSNumber+64Bit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSNumber+64Bit.h"; sourceTree = "<group>"; };
-		8B2B8AE1118BA49F00437315 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		8B2B9DE3119084FC00437315 /* OTPAuthURLEntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthURLEntryController.h; sourceTree = "<group>"; };
 		8B2B9DE4119084FC00437315 /* OTPAuthURLEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURLEntryController.m; sourceTree = "<group>"; };
 		8B2BC3631302FE2900C7B44C /* GTMLocalizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLocalizedString.h; sourceTree = "<group>"; };
@@ -431,7 +430,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8B2B8AE1118BA49F00437315 /* README */,
 				8BF50835118633BB005C936F /* zxing */,
 				8B73DCF81182657500861C87 /* google-toolbox-for-mac */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -460,7 +458,6 @@
 				8BC958E4128B5DB500A0E8F2 /* Icon_2x.png */,
 				8BC958E5128B5DB500A0E8F2 /* Icon-iPad.png */,
 				8BC958E6128B5DB500A0E8F2 /* Icon.png */,
-				8BC958E7128B5DB500A0E8F2 /* iTunesArtwork.png */,
 				8BC958E3128B5DA400A0E8F2 /* iOSIcon-Auth.psd */,
 				8BE5CF5A11AB48D200A20746 /* close.pdf */,
 				8BE5CF7111AB48F700A20746 /* close.png */,
