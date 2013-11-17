@@ -316,6 +316,7 @@
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
@@ -402,7 +403,9 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = OTP;
 				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Pandamonia LLC";
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 94C3W2AV74;
@@ -679,6 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;
@@ -699,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;

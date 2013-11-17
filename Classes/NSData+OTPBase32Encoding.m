@@ -145,19 +145,14 @@
             }
             decodedBaseIndex += paddingAdjustment[encodedBlockIndex];
             
-            self = [self initWithData:decodedData];
-            [decodedData release];
-            return self;
+            return (self = [self initWithData:decodedData]);
         }
     }
     @catch (NSException *exception) {
-        if (decodedData) {
-            [decodedData release];
-        }
+		decodedData = nil;
         OTPDevLog(@"WARNING: error occured while decoding base 32 string: %@", exception);
     }
     
-    [self release];
     return (self = nil);
 }
 
@@ -174,25 +169,21 @@
     }
     
     NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return [ret autorelease];
+    return ret;
 }
 
 - (id)otp_initWithBase32EncodedData:(NSData *)base32Data options:(OTPDataBase32DecodingOptions)options
 {
     if (!base32Data) {
-        [self release];
-        return nil;
+        return (self = nil);
     }
     
     if (!base32Data.length) {
-        self = [self initWithBytes:NULL length:0];
-        return self;
+        return (self = [self initWithBytes:NULL length:0]);
     }
     
     NSString *base32String = [[NSString alloc] initWithData:base32Data encoding:NSUTF8StringEncoding];
-    self = [self otp_initWithBase32EncodedString:base32String options:options];
-    [base32String release];
-    return self;
+    return (self = [self otp_initWithBase32EncodedString:base32String options:options]);
 }
 
 - (NSData *)otp_base32EncodedDataWithOptions:(OTPDataBase32EncodingOptions)options
@@ -219,7 +210,6 @@
         if (options & OTPDataBase32EncodingCaseInsensitive) {
             NSString *toUpper = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
             NSString *uppercaseString = [toUpper uppercaseString];
-            [toUpper release];
             targetData = [uppercaseString dataUsingEncoding:NSUTF8StringEncoding];
         } else {
             targetData = self;
@@ -289,15 +279,11 @@
             }
             
             NSData *ret = [encodedData copy];
-            [encodedData release];
-            return [ret autorelease];
+            return ret;
         }
     }
     @catch (NSException *exception) {
-        if (encodedData) {
-            [encodedData release];
-            encodedData = nil;
-        }
+        encodedData = nil;
         OTPDevLog(@"WARNING: error occured while tring to encode base 32 data: %@", exception);
     }
     return nil;

@@ -67,31 +67,21 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
 - (id)initWithSecret:(NSData *)secret
            algorithm:(NSString *)algorithm
               digits:(NSUInteger)digits {
-  if ((self = [super init])) {
-    algorithm_ = [algorithm copy];
-    secret_ = [secret copy];
-    digits_ = digits;
-
-    BOOL goodAlgorithm
-      = ([algorithm isEqualToString:kOTPGeneratorSHA1Algorithm] ||
-         [algorithm isEqualToString:kOTPGeneratorSHA256Algorithm] ||
-         [algorithm isEqualToString:kOTPGeneratorSHA512Algorithm] ||
-         [algorithm isEqualToString:kOTPGeneratorSHAMD5Algorithm]);
-    if (!goodAlgorithm || digits_ > 8 || digits_ < 6 || !secret_) {
-      OTPDevLog(@"Bad args digits(min 6, max 8): %d secret: %@ algorithm: %@",
-                 digits_, secret_, algorithm_);
-      [self release];
-      self = nil;
+	BOOL goodAlgorithm = ([algorithm isEqualToString:kOTPGeneratorSHA1Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHA256Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHA512Algorithm] || [algorithm isEqualToString:kOTPGeneratorSHAMD5Algorithm]);
+    if (!goodAlgorithm || digits > 8 || digits < 6 || !secret) {
+		OTPDevLog(@"Bad args digits(min 6, max 8): %d secret: %@ algorithm: %@", digits, secret, algorithm);
+		return (self = nil);
     }
-  }
-  return self;
+
+	self = [super init];
+	if (self) {
+		algorithm_ = [algorithm copy];
+		secret_ = [secret copy];
+		digits_ = digits;
+	}
+	return self;
 }
 
-- (void)dealloc {
-  self.algorithm = nil;
-  self.secret = nil;
-  [super dealloc];
-}
 
 // Must be overriden by subclass.
 - (NSString *)generateOTP {

@@ -29,10 +29,10 @@
 @interface OTPAuthURL : NSObject
 
 // |name| is an arbitrary UTF8 text string extracted from the url path.
-@property(readwrite, copy, nonatomic) NSString *name;
-@property(readonly, nonatomic) NSString *otpCode;
-@property(readonly, nonatomic) NSString *checkCode;
-@property(readonly, retain, nonatomic) NSData *keychainItemRef;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy, readonly) NSString *otpCode;
+@property (nonatomic, copy, readonly) NSString *checkCode;
+@property (nonatomic, strong, readonly) NSData *keychainItemRef;
 
 + (OTPAuthURL *)authURLWithURL:(NSURL *)url
                         secret:(NSData *)secret;

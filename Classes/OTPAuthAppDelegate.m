@@ -29,18 +29,18 @@
 static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 @interface OTPGoodTokenSheet : UIActionSheet
-@property(readwrite, nonatomic, retain) OTPAuthURL *authURL;
+@property(readwrite, nonatomic, strong) OTPAuthURL *authURL;
 @end
 
 @interface OTPAuthAppDelegate () <UINavigationControllerDelegate>
 // The OTPAuthURL objects in this array are loaded from the keychain at
 // startup and serialized there on shutdown.
-@property (nonatomic, retain) NSMutableArray *authURLs;
-@property (nonatomic, assign) RootViewController *rootViewController;
-@property (nonatomic, assign) UIBarButtonItem *editButton;
-@property (nonatomic, assign) OTPEditingState editingState;
-@property (nonatomic, retain) OTPAuthURL *urlBeingAdded;
-@property (nonatomic, retain) UIAlertView *urlAddAlert;
+@property (nonatomic, strong) NSMutableArray *authURLs;
+@property (nonatomic, strong) RootViewController *rootViewController;
+@property (nonatomic, strong) UIBarButtonItem *editButton;
+@property (nonatomic) OTPEditingState editingState;
+@property (nonatomic, strong) OTPAuthURL *urlBeingAdded;
+@property (nonatomic, strong) UIAlertView *urlAddAlert;
 
 - (void)saveKeychainArray;
 - (void)updateUI;
@@ -55,17 +55,6 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 @synthesize editingState = editingState_;
 @synthesize urlAddAlert = urlAddAlert_;
 @synthesize urlBeingAdded = urlBeingAdded_;
-
-- (void)dealloc {
-  self.window = nil;
-  self.navigationController = nil;
-  self.rootViewController = nil;
-  self.authURLs = nil;
-  self.editButton = nil;
-  self.urlBeingAdded = nil;
-  self.urlAddAlert = nil;
-  [super dealloc];
-}
 
 - (void)updateUI {
   BOOL hidden = YES;
@@ -117,7 +106,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 	self.window = window;
 
   if ([self.authURLs count] == 0) {
-    OTPWelcomeViewController *controller = [[[OTPWelcomeViewController alloc] init] autorelease];
+    OTPWelcomeViewController *controller = [[OTPWelcomeViewController alloc] init];
     [rootNavController pushViewController:controller animated:NO];
   }
     
@@ -136,12 +125,11 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
     NSString *noButton = NSLocalizedString(@"No", @"No");
     NSString *yesButton = NSLocalizedString(@"Yes", @"Yes");
 
-    self.urlAddAlert = [[[UIAlertView alloc] initWithTitle:title
+    self.urlAddAlert = [[UIAlertView alloc] initWithTitle:title
                                                    message:message
                                                   delegate:self
                                          cancelButtonTitle:noButton
-                                         otherButtonTitles:yesButton, nil]
-                        autorelease];
+                                         otherButtonTitles:yesButton, nil];
     self.urlBeingAdded = authURL;
     [self.urlAddAlert show];
   }
@@ -211,8 +199,8 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
   UITableViewCell *cell
     = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   if (!cell) {
-    cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
-                             reuseIdentifier:cellIdentifier] autorelease];
+    cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
+                             reuseIdentifier:cellIdentifier];
   }
   [(OTPTableViewCell *)cell setAuthURL:url];
   return cell;
@@ -266,7 +254,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
     [tableView endUpdates];
     [self updateUI];
     if ([self.authURLs count] == 0 && self.editingState != kOTPEditingSingleRow) {
-      [self.editButton.target performSelector:self.editButton.action withObject:self];
+		[self.rootViewController setEditing:!self.rootViewController.editing animated:YES];
     }
   }
 }
@@ -359,10 +347,5 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 @implementation OTPGoodTokenSheet
 
 @synthesize authURL = authURL_;
-
-- (void)dealloc {
-  self.authURL = nil;
-  [super dealloc];
-}
 
 @end

@@ -20,7 +20,7 @@
 
 @interface OTPWelcomeViewController : UIViewController
 
-@property (retain, nonatomic, readwrite) IBOutlet UITextView *welcomeText;
+@property (weak, nonatomic, readonly) IBOutlet UITextView *welcomeText;
 
 @end
 

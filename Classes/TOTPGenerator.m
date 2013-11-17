@@ -34,19 +34,16 @@
            algorithm:(NSString *)algorithm
               digits:(NSUInteger)digits
               period:(NSTimeInterval)period {
-  if ((self = [super initWithSecret:secret
-                          algorithm:algorithm
-                             digits:digits])) {
+	if (period <= 0 || period > 300) {
+		OTPDevLog(@"Bad Period: %f", period);
+		return (self = nil);
+	}
 
-    if (period <= 0 || period > 300) {
-      OTPDevLog(@"Bad Period: %f", period);
-      [self release];
-      self = nil;
-    } else {
-      self.period = period;
-    }
-  }
-  return self;
+	self = [super initWithSecret:secret algorithm:algorithm digits:digits];
+	if (self) {
+		self.period = period;
+	}
+	return self;
 }
 
 - (NSString *)generateOTP {

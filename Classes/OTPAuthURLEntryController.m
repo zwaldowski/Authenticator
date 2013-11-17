@@ -27,12 +27,14 @@
 #import "OTPScannerOverlayView.h"
 #import "UIColor+MobileColors.h"
 
-@interface OTPAuthURLEntryController () <AVCaptureMetadataOutputObjectsDelegate>
-@property(nonatomic, readwrite) UITextField *activeTextField;
-@property(nonatomic, retain) UIBarButtonItem *doneButtonItem;
-@property (nonatomic) dispatch_queue_t queue;
-@property (nonatomic, retain) AVCaptureSession *avSession;
-@property BOOL handleCapture;
+
+@interface OTPAuthURLEntryController () <UITextFieldDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, AVCaptureMetadataOutputObjectsDelegate>
+
+@property (weak, nonatomic) UITextField *activeTextField;
+@property (strong, nonatomic) UIBarButtonItem *doneButtonItem;
+@property (strong, nonatomic) dispatch_queue_t queue;
+@property (strong, nonatomic) AVCaptureSession *avSession;
+@property (nonatomic) BOOL handleCapture;
 
 - (void)keyboardWasShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
@@ -49,7 +51,6 @@
 @synthesize scanBarcodeButton = scanBarcodeButton_;
 @synthesize scrollView = scrollView_;
 @synthesize activeTextField = activeTextField_;
-@synthesize queue = queue_;
 @synthesize avSession = avSession_;
 @synthesize handleCapture = handleCapture_;
 
@@ -74,20 +75,7 @@
 }
 
 - (void)dealloc {
-  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-  [nc removeObserver:self];
-  self.delegate = nil;
-  self.doneButtonItem = nil;
-  self.accountName = nil;
-  self.accountKey = nil;
-  self.accountNameLabel = nil;
-  self.accountKeyLabel = nil;
-  self.accountType = nil;
-  self.scanBarcodeButton = nil;
-  self.scrollView = nil;
-  self.queue = nil;
-  self.avSession = nil;
-  [super dealloc];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -145,21 +133,9 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  self.doneButtonItem = nil;
-  self.handleCapture = NO;
-  [self.avSession stopRunning];
-}
-
-- (void)setQueue:(dispatch_queue_t)aQueue {
-  if (queue_ != aQueue) {
-    if (queue_) {
-      dispatch_release(queue_);
-    }
-    queue_ = aQueue;
-    if (queue_) {
-      dispatch_retain(queue_);
-    }
-  }
+	self.doneButtonItem = nil;
+	self.handleCapture = NO;
+	[self.avSession stopRunning];
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -233,8 +209,8 @@
     }
     NSString *name = self.accountName.text;
     OTPAuthURL *authURL
-      = [[[authURLClass alloc] initWithSecret:secret
-                                         name:name] autorelease];
+      = [[authURLClass alloc] initWithSecret:secret
+                                         name:name];
     NSString *checkCode = authURL.checkCode;
     if (checkCode) {
       [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
@@ -255,12 +231,11 @@
     NSString *button
       = NSLocalizedString(@"Try Again",
                           @"Button title to try again");
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                      message:message
                                                     delegate:nil
                                            cancelButtonTitle:button
-                                           otherButtonTitles:nil]
-                          autorelease];
+                                           otherButtonTitles:nil];
     [alert show];
   }
 }
@@ -288,14 +263,13 @@
       
     dispatch_queue_t queue = dispatch_queue_create("OTPAuthURLEntryController", 0);
     self.queue = queue;
-    dispatch_release(queue);
       
     AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
     [session addOutput:output];
     [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
     [output setMetadataObjectsDelegate:self queue:queue];
 
-    self.avSession = [session autorelease];
+    self.avSession = session;
   }
 
   AVCaptureVideoPreviewLayer *previewLayer
@@ -313,13 +287,13 @@
   [cancelButton setTitle:cancelString forState:UIControlStateNormal];
 
   UIViewController *previewController
-    = [[[UIViewController alloc] init] autorelease];
+    = [[UIViewController alloc] init];
   [previewController.view.layer addSublayer:previewLayer];
 
   CGRect frame = previewController.view.bounds;
   previewLayer.frame = frame;
   OTPScannerOverlayView *overlayView
-    = [[[OTPScannerOverlayView alloc] initWithFrame:frame] autorelease];
+    = [[OTPScannerOverlayView alloc] initWithFrame:frame];
   [previewController.view addSubview:overlayView];
 
   // Center the cancel button horizontally, and put it
@@ -387,12 +361,11 @@
                                      urlString];
                 NSString *button = NSLocalizedString(@"Try Again",
                                                      @"Button title to try again");
-                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                                  message:message
                                                                 delegate:self
                                                        cancelButtonTitle:button
-                                                       otherButtonTitles:nil]
-                                      autorelease];
+                                                       otherButtonTitles:nil];
                 [alert show];
             }
         });

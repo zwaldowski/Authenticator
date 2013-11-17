@@ -53,9 +53,8 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 
 @interface OTPAuthURL ()
 
-// re-declare readwrite
-@property(readwrite, retain, nonatomic) NSData *keychainItemRef;
-@property(readwrite, retain, nonatomic) OTPGenerator *generator;
+@property (strong, nonatomic, readwrite) NSData *keychainItemRef;
+@property (strong, nonatomic) OTPGenerator *generator;
 
 // Initialize an OTPAuthURL with a dictionary of attributes from a keychain.
 + (OTPAuthURL *)authURLWithKeychainDictionary:(NSDictionary *)dict;
@@ -103,7 +102,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
   NSString *urlScheme = [url scheme];
   if ([urlScheme isEqualToString:kTOTPAuthScheme]) {
     // Convert totp:// into otpauth://
-    authURL = [[[TOTPAuthURL alloc] initWithTOTPURL:url] autorelease];
+    authURL = [[TOTPAuthURL alloc] initWithTOTPURL:url];
   } else if (![urlScheme isEqualToString:kOTPAuthScheme]) {
     // Required (otpauth://)
     OTPDevLog(@"invalid scheme: %@", [url scheme]);
@@ -136,17 +135,17 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 
       NSString *type = [url host];
       if ([type isEqualToString:@"hotp"]) {
-        authURL = [[[HOTPAuthURL alloc] initWithName:name
+        authURL = [[HOTPAuthURL alloc] initWithName:name
                                               secret:secret
                                            algorithm:algorithm
                                               digits:digits
-                                               query:query] autorelease];
+                                               query:query];
       } else if ([type isEqualToString:@"totp"]) {
-        authURL = [[[TOTPAuthURL alloc] initWithName:name
+        authURL = [[TOTPAuthURL alloc] initWithName:name
                                               secret:secret
                                            algorithm:algorithm
                                               digits:digits
-                                               query:query] autorelease];
+                                               query:query];
       }
     }
   }
@@ -154,46 +153,43 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 }
 
 + (OTPAuthURL *)authURLWithKeychainItemRef:(NSData *)data {
-  OTPAuthURL *authURL = nil;
-  NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                         (id)kSecClassGenericPassword, kSecClass,
-                         data, (id)kSecValuePersistentRef,
-                         (id)kCFBooleanTrue, kSecReturnAttributes,
-                         (id)kCFBooleanTrue, kSecReturnData,
-                         nil];
-  NSDictionary *result = nil;
-  OSStatus status = SecItemCopyMatching((CFDictionaryRef)query,
-                                        (CFTypeRef*)&result);
+	OTPAuthURL *authURL = nil;
+	NSDictionary *query = @{
+					 (__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+		(__bridge id)kSecValuePersistentRef: data,
+		  (__bridge id)kSecReturnAttributes: @YES,
+				(__bridge id)kSecReturnData: @YES
+	};
+	CFDictionaryRef result = NULL;
+	OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&result);
   if (status == noErr) {
-    authURL = [self authURLWithKeychainDictionary:result];
+    authURL = [self authURLWithKeychainDictionary:(__bridge_transfer NSDictionary *)result];
     [authURL setKeychainItemRef:data];
   }
   return authURL;
 }
 
 + (OTPAuthURL *)authURLWithKeychainDictionary:(NSDictionary *)dict {
-  NSData *urlData = [dict objectForKey:(id)kSecAttrGeneric];
-  NSData *secretData = [dict objectForKey:(id)kSecValueData];
-  NSString *urlString = [[[NSString alloc] initWithData:urlData
-                                               encoding:NSUTF8StringEncoding]
-                         autorelease];
+  NSData *urlData = [dict objectForKey:(__bridge id)kSecAttrGeneric];
+  NSData *secretData = [dict objectForKey:(__bridge id)kSecValueData];
+  NSString *urlString = [[NSString alloc] initWithData:urlData
+                                               encoding:NSUTF8StringEncoding];
   NSURL *url = [NSURL URLWithString:urlString];
   return  [self authURLWithURL:url secret:secretData];
 }
 
-- (id)initWithOTPGenerator:(OTPGenerator *)generator
-                      name:(NSString *)name {
-  if ((self = [super init])) {
-    if (!generator || !name) {
-      OTPDevLog(@"Bad Args Generator:%@ Name:%@", generator, name);
-      [self release];
-      self = nil;
-    } else {
-      self.generator = generator;
-      self.name = name;
-    }
-  }
-  return self;
+- (id)initWithOTPGenerator:(OTPGenerator *)generator name:(NSString *)name {
+	if (!generator || !name) {
+		OTPDevLog(@"Bad Args Generator:%@ Name:%@", generator, name);
+		return (self = nil);
+	}
+	
+	self = [super init];
+	if (self) {
+		self.generator = generator;
+		self.name = name;
+	}
+	return self;
 }
 
 - (id)init {
@@ -201,12 +197,6 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
   return nil;
 }
 
-- (void)dealloc {
-  self.generator = nil;
-  self.name = nil;
-  self.keychainItemRef = nil;
-  [super dealloc];
-}
 
 - (NSURL *)url {
   [self doesNotRecognizeSelector:_cmd];
@@ -219,24 +209,24 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 
   NSMutableDictionary *attributes =
    [NSMutableDictionary dictionaryWithObject:urlData
-                                      forKey:(id)kSecAttrGeneric];
+                                      forKey:(__bridge id)kSecAttrGeneric];
   OSStatus status;
 
   if ([self isInKeychain]) {
     NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                           (id)kSecClassGenericPassword, (id)kSecClass,
-                           self.keychainItemRef, (id)kSecValuePersistentRef,
+                           (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
+                           self.keychainItemRef, (__bridge id)kSecValuePersistentRef,
                            nil];
 
-    status = SecItemUpdate((CFDictionaryRef)query, (CFDictionaryRef)attributes);
+    status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)attributes);
 
     OTPDevLog(@"SecItemUpdate(%@, %@) = %ld", query, attributes, status);
   } else {
-    [attributes setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
-    [attributes setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnPersistentRef];
-    [attributes setObject:self.generator.secret forKey:(id)kSecValueData];
-    [attributes setObject:kOTPService forKey:(id)kSecAttrService];
-    NSData *ref = nil;
+    [attributes setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    [attributes setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnPersistentRef];
+    [attributes setObject:self.generator.secret forKey:(__bridge id)kSecValueData];
+    [attributes setObject:kOTPService forKey:(__bridge id)kSecAttrService];
+	  CFDataRef ref = NULL;
 
     // The name here has to be unique or else we will get a errSecDuplicateItem
     // so if we have two items with the same name, we will just append a
@@ -245,8 +235,8 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
     // We do not display this name to the user, so anything will do.
     NSString *name = self.name;
     for (int i = 0; i < 1000; i++) {
-      [attributes setObject:name forKey:(id)kSecAttrAccount];
-      status = SecItemAdd((CFDictionaryRef)attributes, (CFTypeRef *)&ref);
+      [attributes setObject:name forKey:(__bridge id)kSecAttrAccount];
+      status = SecItemAdd((__bridge CFDictionaryRef)attributes, (CFTypeRef *)&ref);
       if (status == errSecDuplicateItem) {
         name = [NSString stringWithFormat:@"%@.%ld", self.name, random()];
       } else {
@@ -256,7 +246,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
     OTPDevLog(@"SecItemAdd(%@, %@) = %ld", attributes, ref, status);
 
     if (status == noErr) {
-      self.keychainItemRef = ref;
+      self.keychainItemRef = (__bridge_transfer NSData *)ref;
     }
   }
 
@@ -268,10 +258,10 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
     return NO;
   }
   NSDictionary *query = [NSDictionary dictionaryWithObjectsAndKeys:
-                         (id)kSecClassGenericPassword, (id)kSecClass,
-                         [self keychainItemRef], (id)kSecValuePersistentRef,
+                         (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
+                         [self keychainItemRef], (__bridge id)kSecValuePersistentRef,
                          nil];
-  OSStatus status = SecItemDelete((CFDictionaryRef)query);
+  OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
 
   OTPDevLog(@"SecItemDelete(%@) = %ld", query, status);
 
@@ -315,13 +305,13 @@ static NSString *const TOTPAuthURLTimerNotification
 + (void)initialize {
   static NSTimer *sTOTPTimer = nil;
   if (!sTOTPTimer) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    sTOTPTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                  target:self
-                                                selector:@selector(totpTimer:)
-                                                userInfo:nil
-                                                 repeats:YES];
-    [pool drain];
+    @autoreleasepool {
+      sTOTPTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                    target:self
+                                                  selector:@selector(totpTimer:)
+                                                  userInfo:nil
+                                                   repeats:YES];
+    }
   }
 }
 
@@ -345,11 +335,10 @@ static NSString *const TOTPAuthURLTimerNotification
 
 - (id)initWithSecret:(NSData *)secret name:(NSString *)name {
   TOTPGenerator *generator
-    = [[[TOTPGenerator alloc] initWithSecret:secret
+    = [[TOTPGenerator alloc] initWithSecret:secret
                                    algorithm:[TOTPGenerator defaultAlgorithm]
                                       digits:[TOTPGenerator defaultDigits]
-                                      period:[TOTPGenerator defaultPeriod]]
-       autorelease];
+                                      period:[TOTPGenerator defaultPeriod]];
   return [self initWithOTPGenerator:generator
                                name:name];
 }
@@ -384,10 +373,10 @@ static NSString *const TOTPAuthURLTimerNotification
   }
 
   TOTPGenerator *generator
-    = [[[TOTPGenerator alloc] initWithSecret:secret
+    = [[TOTPGenerator alloc] initWithSecret:secret
                                    algorithm:algorithm
                                       digits:digits
-                                      period:period] autorelease];
+                                      period:period];
 
   if ((self = [self initWithOTPGenerator:generator
                                     name:name])) {
@@ -398,7 +387,6 @@ static NSString *const TOTPAuthURLTimerNotification
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [super dealloc];
 }
 
 - (NSString *)otpCode {
@@ -476,11 +464,10 @@ static NSString *const TOTPAuthURLTimerNotification
 
 - (id)initWithSecret:(NSData *)secret name:(NSString *)name {
   HOTPGenerator *generator
-    = [[[HOTPGenerator alloc] initWithSecret:secret
+    = [[HOTPGenerator alloc] initWithSecret:secret
                                    algorithm:[HOTPGenerator defaultAlgorithm]
                                       digits:[HOTPGenerator defaultDigits]
-                                     counter:[HOTPGenerator defaultInitialCounter]]
-        autorelease];
+                                     counter:[HOTPGenerator defaultInitialCounter]];
   return [self initWithOTPGenerator:generator name:name];
 }
 
@@ -497,26 +484,17 @@ static NSString *const TOTPAuthURLTimerNotification
     // Good scan should always be good based on the isValidCounter check above.
     NSAssert(goodScan, @"goodscan should be true: %c", goodScan);
     HOTPGenerator *generator
-      = [[[HOTPGenerator alloc] initWithSecret:secret
+      = [[HOTPGenerator alloc] initWithSecret:secret
                                      algorithm:algorithm
                                         digits:digits
-                                       counter:counter] autorelease];
-    self = [self initWithOTPGenerator:generator
-                                 name:name];
+                                       counter:counter];
+    return (self = [self initWithOTPGenerator:generator name:name]);
   } else {
     OTPDevLog(@"invalid counter: %@", counterString);
-    self = [super initWithOTPGenerator:nil name:nil];
-    [self release];
-    self = nil;
+    return (self = [super initWithOTPGenerator:nil name:nil]);
   }
-
-  return self;
 }
 
-- (void)dealloc {
-  self.otpCode = nil;
-  [super dealloc];
-}
 
 - (void)generateNextOTPCode {
   self.otpCode = [[self generator] generateOTP];

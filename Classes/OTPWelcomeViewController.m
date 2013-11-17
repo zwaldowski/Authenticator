@@ -19,6 +19,12 @@
 #import "OTPWelcomeViewController.h"
 #import "OTPAuthAppDelegate.h"
 
+@interface OTPWelcomeViewController ()
+
+@property (weak, nonatomic, readwrite) IBOutlet UITextView *welcomeText;
+
+@end
+
 @implementation OTPWelcomeViewController
 
 @synthesize welcomeText = welcomeText_;
@@ -30,10 +36,6 @@
   return self;
 }
 
-- (void)dealloc {
-  self.welcomeText = nil;
-  [super dealloc];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
   NSString *title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
@@ -41,10 +43,9 @@
   self.navigationItem.hidesBackButton = YES;
     
   UIBarButtonItem *button
-    = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+    = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                      target:[[UIApplication sharedApplication] delegate]
-                                                     action:@selector(addAuthURL:)]
-       autorelease];
+                                                     action:@selector(addAuthURL:)];
   self.navigationItem.rightBarButtonItem = button;
 
   NSString *label = NSLocalizedString(@"Welcome_label", @"Welcome text");

@@ -19,14 +19,14 @@
 #import "OTPAuthAboutController.h"
 #import "UIColor+MobileColors.h"
 
-@interface OTPAuthAboutWebViewController : UIViewController
-  <UIWebViewDelegate, UIAlertViewDelegate> {
- @private
-  NSURL *url_;
-  NSString *label_;
-  UIActivityIndicatorView *spinner_;
-}
+@interface OTPAuthAboutWebViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
+
 - (id)initWithURL:(NSURL *)url accessibilityLabel:(NSString *)label;
+
+@property (nonatomic, strong, readonly) NSURL *URL;
+@property (nonatomic, copy, readonly) NSString *accessibilityLabel;
+@property (nonatomic, weak) UIActivityIndicatorView *spinner;
+
 @end
 
 @implementation OTPAuthAboutController
@@ -80,8 +80,8 @@
   UITableViewCell *cell
     = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (!cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-                                   reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                   reuseIdentifier:CellIdentifier];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
   }
 
@@ -149,9 +149,8 @@
   }
   if (url) {
     OTPAuthAboutWebViewController *controller
-        = [[[OTPAuthAboutWebViewController alloc] initWithURL:url
-                                           accessibilityLabel:label]
-           autorelease];
+        = [[OTPAuthAboutWebViewController alloc] initWithURL:url
+                                           accessibilityLabel:label];
     [[self navigationController] pushViewController:controller animated:YES];
   }
 }
@@ -161,30 +160,30 @@
 @implementation OTPAuthAboutWebViewController
 
 - (id)initWithURL:(NSURL *)url accessibilityLabel:(NSString *)label {
-  if ((self = [super initWithNibName:nil bundle:nil])) {
-    url_ = [url retain];
-    label_ = [label copy];
-  }
-  return self;
+	self = [super initWithNibName:nil bundle:nil];
+	if (self) {
+		_URL = url;
+		_accessibilityLabel = [label copy];
+	}
+	return self;
 }
 
-- (void)dealloc {
-  [url_ release];
-  [label_ release];
-  [super dealloc];
-}
 
 - (void)loadView {
-  UIWebView *webView
-    = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
+  UIWebView *webView = [[UIWebView alloc] init];
   [webView setScalesPageToFit:YES];
   [webView setDelegate:self];
-  [webView setAccessibilityLabel:label_];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url_];
-  [webView loadRequest:request];
+  [webView setAccessibilityLabel:_accessibilityLabel];
   [self setView:webView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:_URL];
+	[(UIWebView *)self.view loadRequest:request];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -201,20 +200,18 @@
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-  spinner_ = [[UIActivityIndicatorView alloc]
-              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-  CGRect bounds = webView.bounds;
-  CGPoint middle = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-  [spinner_ setCenter:middle];
-  [webView addSubview:spinner_];
-  [spinner_ startAnimating];
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	CGRect bounds = webView.bounds;
+	CGPoint middle = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+	[spinner setCenter:middle];
+	[webView addSubview:spinner];
+	self.spinner = spinner;
+	[spinner startAnimating];
 }
 
 - (void)stopSpinner {
-  [spinner_ stopAnimating];
-  [spinner_ removeFromSuperview];
-  [spinner_ release];
-  spinner_ = nil;
+	[self.spinner stopAnimating];
+	[self.spinner removeFromSuperview];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -227,12 +224,12 @@
     = NSLocalizedString(@"Unable to load webpage.",
                         @"Notification that a web page cannot be loaded");
   UIAlertView *alert
-    = [[[UIAlertView alloc] initWithTitle:errString
+    = [[UIAlertView alloc] initWithTitle:errString
                                   message:[error localizedDescription]
                                  delegate:nil
                         cancelButtonTitle:NSLocalizedString(@"OK",
                                                             @"OK button")
-                        otherButtonTitles:nil] autorelease];
+                        otherButtonTitles:nil];
   [alert setDelegate:self];
   [alert show];
 }

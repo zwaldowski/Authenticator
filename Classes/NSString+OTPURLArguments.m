@@ -29,7 +29,7 @@
                                             NULL,
                                             CFSTR("!*'();:@&=+$,/?%#[]"),
                                             kCFStringEncodingUTF8);
-  return [(NSString *)escaped autorelease];
+	return (__bridge_transfer NSString *)escaped;
 }
 
 - (NSString*)otp_stringByUnescapingFromURLArgument {
@@ -38,7 +38,7 @@
                                 withString:@" "
                                    options:NSLiteralSearch
                                      range:NSMakeRange(0, [resultString length])];
-  return [[resultString autorelease] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  return [resultString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
