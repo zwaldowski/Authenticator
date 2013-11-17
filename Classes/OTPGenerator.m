@@ -142,7 +142,7 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
   _GTMDevLog(@"truncatedHash: %d", truncatedHash);
   _GTMDevLog(@"pinValue: %d", pinValue);
 
-  return [NSString stringWithFormat:@"%0*d", digits_, pinValue];
+  return [NSString stringWithFormat:@"%0*lu", digits_, pinValue];
 }
 
 @end
