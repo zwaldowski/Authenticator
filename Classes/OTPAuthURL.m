@@ -20,6 +20,8 @@
 
 #import <Security/Security.h>
 
+#import "OTPDefines.h"
+
 #import "GTMNSDictionary+URLArguments.h"
 #import "GTMNSString+URLArguments.h"
 #import "GTMNSScanner+Unsigned.h"
@@ -201,7 +203,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
                       name:(NSString *)name {
   if ((self = [super init])) {
     if (!generator || !name) {
-      _GTMDevLog(@"Bad Args Generator:%@ Name:%@", generator, name);
+      OTPDevLog(@"Bad Args Generator:%@ Name:%@", generator, name);
       [self release];
       self = nil;
     } else {
@@ -246,7 +248,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 
     status = SecItemUpdate((CFDictionaryRef)query, (CFDictionaryRef)attributes);
 
-    _GTMDevLog(@"SecItemUpdate(%@, %@) = %ld", query, attributes, status);
+    OTPDevLog(@"SecItemUpdate(%@, %@) = %ld", query, attributes, status);
   } else {
     [attributes setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
     [attributes setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnPersistentRef];
@@ -269,7 +271,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
         break;
       }
     }
-    _GTMDevLog(@"SecItemAdd(%@, %@) = %ld", attributes, ref, status);
+    OTPDevLog(@"SecItemAdd(%@, %@) = %ld", attributes, ref, status);
 
     if (status == noErr) {
       self.keychainItemRef = ref;
@@ -289,7 +291,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
                          nil];
   OSStatus status = SecItemDelete((CFDictionaryRef)query);
 
-  _GTMDevLog(@"SecItemDelete(%@) = %ld", query, status);
+  OTPDevLog(@"SecItemDelete(%@) = %ld", query, status);
 
   if (status == noErr) {
     [self setKeychainItemRef:nil];
@@ -302,7 +304,7 @@ NSString *const OTPAuthURLSecondsBeforeNewOTPKey
 }
 
 - (void)generateNextOTPCode {
-  _GTMDevLog(@"Called generateNextOTPCode on a non-HOTP generator");
+  OTPDevLog(@"Called generateNextOTPCode on a non-HOTP generator");
 }
 
 - (NSString*)checkCode {
@@ -520,7 +522,7 @@ static NSString *const TOTPAuthURLTimerNotification
     self = [self initWithOTPGenerator:generator
                                  name:name];
   } else {
-    _GTMDevLog(@"invalid counter: %@", counterString);
+    OTPDevLog(@"invalid counter: %@", counterString);
     self = [super initWithOTPGenerator:nil name:nil];
     [self release];
     self = nil;

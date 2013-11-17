@@ -320,6 +320,7 @@
 		8BF5104C118748C7005C936F /* OTPAuthURLEntryController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPAuthURLEntryController.xib; sourceTree = "<group>"; };
 		8BF5104D118748C7005C936F /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		8BF5147F118799AE005C936F /* OTPAuth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OTPAuth-Info.plist"; sourceTree = "<group>"; };
+		DB44045E1838A4E4000F898B /* OTPDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTPDefines.h; sourceTree = "<group>"; };
 		DBD09F9818388625002B103D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DBD09F9A183887BA002B103D /* PlusButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PlusButton@2x.png"; sourceTree = "<group>"; };
 		DBD09F9C18388824002B103D /* Info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info@2x.png"; sourceTree = "<group>"; };
@@ -431,6 +432,7 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				8BF5147F118799AE005C936F /* OTPAuth-Info.plist */,
 				8B2B85D9118B8DE400437315 /* OTPAuthUnitTest-Info.plist */,
+				DB44045E1838A4E4000F898B /* OTPDefines.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";

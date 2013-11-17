@@ -21,7 +21,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <CommonCrypto/CommonDigest.h>
 
-#import "GTMDefines.h"
+#import "OTPDefines.h"
 
 static NSUInteger kPinModTable[] = {
   0,
@@ -78,7 +78,7 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
          [algorithm isEqualToString:kOTPGeneratorSHA512Algorithm] ||
          [algorithm isEqualToString:kOTPGeneratorSHAMD5Algorithm]);
     if (!goodAlgorithm || digits_ > 8 || digits_ < 6 || !secret_) {
-      _GTMDevLog(@"Bad args digits(min 6, max 8): %d secret: %@ algorithm: %@",
+      OTPDevLog(@"Bad args digits(min 6, max 8): %d secret: %@ algorithm: %@",
                  digits_, secret_, algorithm_);
       [self release];
       self = nil;
@@ -115,7 +115,7 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
     alg = kCCHmacAlgMD5;
     hashLength = CC_MD5_DIGEST_LENGTH;
   } else {
-    _GTMDevAssert(NO, @"Unknown algorithm");
+    NSAssert(NO, @"Unknown algorithm");
     return nil;
   }
 
@@ -135,12 +135,12 @@ NSString *const kOTPGeneratorSHAMD5Algorithm = @"MD5";
     NSSwapBigLongToHost(*((unsigned long *)&ptr[offset])) & 0x7fffffff;
   unsigned long pinValue = truncatedHash % kPinModTable[digits_];
 
-  _GTMDevLog(@"secret: %@", secret_);
-  _GTMDevLog(@"counter: %llu", counter);
-  _GTMDevLog(@"hash: %@", hash);
-  _GTMDevLog(@"offset: %d", offset);
-  _GTMDevLog(@"truncatedHash: %d", truncatedHash);
-  _GTMDevLog(@"pinValue: %d", pinValue);
+  OTPDevLog(@"secret: %@", secret_);
+  OTPDevLog(@"counter: %llu", counter);
+  OTPDevLog(@"hash: %@", hash);
+  OTPDevLog(@"offset: %d", offset);
+  OTPDevLog(@"truncatedHash: %d", truncatedHash);
+  OTPDevLog(@"pinValue: %d", pinValue);
 
   return [NSString stringWithFormat:@"%0*lu", digits_, pinValue];
 }
