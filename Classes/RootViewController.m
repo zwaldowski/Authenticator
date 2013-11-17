@@ -70,24 +70,17 @@
   [navigationItem setLeftBarButtonItem:clockItem animated:NO];
   self.navigationController.toolbar.tintColor = [UIColor googleBlueBarColor];
 
-  // UIGestureRecognizers are actually in the iOS 3.1.3 SDK, but are not
-  // publicly exposed (and have slightly different method names).
-  // Check to see it the "public" version is available, otherwise don't use it
-  // at all. numberOfTapsRequired does not exist in 3.1.3.
-  if ([UITapGestureRecognizer
-       instancesRespondToSelector:@selector(numberOfTapsRequired)]) {
-    UILongPressGestureRecognizer *gesture =
-        [[[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                       action:@selector(showCopyMenu:)]
-         autorelease];
-    [view addGestureRecognizer:gesture];
-    UITapGestureRecognizer *doubleTap =
-        [[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                 action:@selector(showCopyMenu:)]
-         autorelease];
-    doubleTap.numberOfTapsRequired = 2;
-    [view addGestureRecognizer:doubleTap];
-  }
+  UILongPressGestureRecognizer *gesture =
+    [[[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                   action:@selector(showCopyMenu:)]
+     autorelease];
+  [view addGestureRecognizer:gesture];
+  UITapGestureRecognizer *doubleTap =
+    [[[UITapGestureRecognizer alloc] initWithTarget:self
+                                             action:@selector(showCopyMenu:)]
+    autorelease];
+  doubleTap.numberOfTapsRequired = 2;
+  [view addGestureRecognizer:doubleTap];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {

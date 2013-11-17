@@ -130,11 +130,7 @@
   self.scrollView.backgroundColor = [UIColor googleBlueBackgroundColor];
 
   // Hide the Scan button if we don't have a camera that will support video.
-  AVCaptureDevice *device = nil;
-  if ([AVCaptureDevice class]) {
-    // AVCaptureDevice is not supported on iOS 3.1.3
-    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-  }
+  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
   if (!device) {
     [self.scanBarcodeButton setHidden:YES];
   }
@@ -162,20 +158,11 @@
 - (void)keyboardWasShown:(NSNotification*)aNotification {
   NSDictionary* info = [aNotification userInfo];
   CGFloat offset = 0;
-
-  // UIKeyboardFrameBeginUserInfoKey does not exist on iOS 3.1.3
-  if (&UIKeyboardFrameBeginUserInfoKey != NULL) {
-    NSValue *sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
-    CGSize keyboardSize = [sizeValue CGRectValue].size;
-    BOOL isLandscape
-      = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
-    offset = isLandscape ? keyboardSize.width : keyboardSize.height;
-  } else {
-    NSValue *sizeValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-    CGSize keyboardSize = [sizeValue CGRectValue].size;
-    // The keyboard size value appears to rotate correctly on iOS 3.1.3.
-    offset = keyboardSize.height;
-  }
+    
+  NSValue *sizeValue = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+  CGSize keyboardSize = [sizeValue CGRectValue].size;
+  BOOL isLandscape = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+  offset = isLandscape ? keyboardSize.width : keyboardSize.height;
 
   UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, offset, 0.0);
   self.scrollView.contentInset = contentInsets;
