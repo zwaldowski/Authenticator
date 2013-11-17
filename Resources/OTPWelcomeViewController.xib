@@ -23,7 +23,9 @@
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES"/>
                     </accessibility>
-                    <string key="text">Google Authenticator generates verification codes that provide additional security when signing in.To use Google Authenticator you must first add an account by pressing:</string>
+                    <string key="text">Google Authenticator generates verification codes that provide additional security when signing in.
+
+To use Google Authenticator you must first add an account by pressing:</string>
                     <color key="textColor" red="0.20000000000000001" green="0.33333333999999998" blue="0.60000001999999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -46,9 +48,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.92156863" green="0.93725491000000005" blue="0.97647059000000003" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>

@@ -15,69 +15,8 @@
             <connections>
                 <outlet property="authURLEntryController" destination="90" id="122"/>
                 <outlet property="authURLEntryNavigationItem" destination="93" id="129"/>
-                <outlet property="legalButton" destination="109" id="127"/>
-                <outlet property="navigationController" destination="9" id="123"/>
-                <outlet property="navigationItem" destination="14" id="128"/>
-                <outlet property="window" destination="2" id="124"/>
             </connections>
         </customObject>
-        <window opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" resizesToFullScreen="NO" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" red="0.92156863" green="0.93725491000000005" blue="0.97647059000000003" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-        </window>
-        <navigationController toolbarHidden="NO" id="9">
-            <extendedEdge key="edgesForExtendedLayout"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <nil key="simulatedDestinationMetrics"/>
-            <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="11">
-                <autoresizingMask key="autoresizingMask"/>
-                <color key="tintColor" red="0.36078431999999999" green="0.49019607999999998" blue="0.82352941999999996" alpha="1" colorSpace="calibratedRGB"/>
-            </navigationBar>
-            <viewControllers>
-                <viewController nibName="RootViewController" id="13" customClass="RootViewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <toolbarItems>
-                        <barButtonItem systemItem="edit" id="107"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="110"/>
-                        <barButtonItem title="Legal Information" id="109">
-                            <connections>
-                                <action selector="showLegalInformation:" destination="3" id="112"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="108"/>
-                        <barButtonItem systemItem="add" id="17">
-                            <connections>
-                                <action selector="addAuthURL:" destination="3" id="19"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Google Authenticator" id="14"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <nil key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="addItem" destination="17" id="120"/>
-                        <outlet property="delegate_" destination="3" id="84"/>
-                        <outlet property="legalItem" destination="109" id="121"/>
-                    </connections>
-                </viewController>
-            </viewControllers>
-            <toolbar key="toolbar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="18">
-                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-            </toolbar>
-            <connections>
-                <outlet property="delegate" destination="3" id="31"/>
-            </connections>
-        </navigationController>
         <navigationController id="90">
             <extendedEdge key="edgesForExtendedLayout"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

@@ -21,7 +21,6 @@
 #import "HOTPGenerator.h"
 #import "TOTPGenerator.h"
 #import "OTPTableViewCell.h"
-#import "OTPAuthAboutController.h"
 #import "OTPWelcomeViewController.h"
 #import "OTPAuthBarClock.h"
 #import "UIColor+MobileColors.h"
@@ -32,7 +31,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 @property(readwrite, nonatomic, retain) OTPAuthURL *authURL;
 @end
 
-@interface OTPAuthAppDelegate ()
+@interface OTPAuthAppDelegate () <UINavigationControllerDelegate>
 // The OTPAuthURL objects in this array are loaded from the keychain at
 // startup and serialized there on shutdown.
 @property (nonatomic, retain) NSMutableArray *authURLs;
@@ -44,7 +43,6 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)saveKeychainArray;
 - (void)updateUI;
-- (void)updateEditing:(UITableView *)tableview;
 @end
 
 @implementation OTPAuthAppDelegate
@@ -57,8 +55,6 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 @synthesize editingState = editingState_;
 @synthesize urlAddAlert = urlAddAlert_;
 @synthesize authURLEntryNavigationItem = authURLEntryNavigationItem_;
-@synthesize legalButton = legalButton_;
-@synthesize navigationItem = navigationItem_;
 @synthesize urlBeingAdded = urlBeingAdded_;
 
 - (void)dealloc {
@@ -69,29 +65,15 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
   self.authURLs = nil;
   self.editButton = nil;
   self.urlBeingAdded = nil;
-  self.legalButton = nil;
-  self.navigationItem = nil;
   self.urlAddAlert = nil;
   self.authURLEntryNavigationItem = nil;
   [super dealloc];
 }
 
 - (void)awakeFromNib {
-  self.legalButton.title
-    = NSLocalizedString(@"Legal Information",
-                        @"Legal Information Button Title");
-  self.navigationItem.title
-    = NSLocalizedString(@"Google Authenticator",
-                        @"Product Name");
   self.authURLEntryNavigationItem.title
     = NSLocalizedString(@"Add Token",
                         @"Add Token Navigation Screen Title");
-}
-
-- (void)updateEditing:(UITableView *)tableView {
-  if ([self.authURLs count] == 0 && [tableView isEditing]) {
-    [tableView setEditing:NO animated:YES];
-  }
 }
 
 - (void)updateUI {
@@ -128,16 +110,26 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
       [self.authURLs addObject:authURL];
     }
   }
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-  self.rootViewController
-    = (RootViewController*)[self.navigationController topViewController];
-  [self.window addSubview:self.navigationController.view];
+    RootViewController *rootVC = [[RootViewController alloc] init];
+    rootVC.delegate = self;
+    self.rootViewController = rootVC;
+    
+    UINavigationController *rootNavController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    rootNavController.delegate = self;
+    self.navigationController = rootNavController;
+
+    window.rootViewController = rootNavController;
+	[window makeKeyAndVisible];
+	self.window = window;
+
   if ([self.authURLs count] == 0) {
-    OTPWelcomeViewController *controller
-      = [[[OTPWelcomeViewController alloc] init] autorelease];
-    [self.navigationController pushViewController:controller animated:NO];
+    OTPWelcomeViewController *controller = [[[OTPWelcomeViewController alloc] init] autorelease];
+    [rootNavController pushViewController:controller animated:NO];
   }
-  [self.window makeKeyAndVisible];
+    
   return YES;
 }
 
@@ -359,16 +351,11 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 #pragma mark -
 #pragma mark Actions
 
--(IBAction)addAuthURL:(id)sender {
-  [self.navigationController popToRootViewControllerAnimated:NO];
-  [self.rootViewController setEditing:NO animated:NO];
-  [self.navigationController presentViewController:self.authURLEntryController animated:YES completion:NULL];
-}
-
-- (IBAction)showLegalInformation:(id)sender {
-  OTPAuthAboutController *controller
-      = [[[OTPAuthAboutController alloc] init] autorelease];
-  [self.navigationController pushViewController:controller animated:YES];
+- (void)addAuthURL:(id)sender {
+  [self.navigationController presentViewController:self.authURLEntryController animated:YES completion:^{
+      [self.navigationController popToRootViewControllerAnimated:NO];
+      [self.rootViewController setEditing:NO animated:NO];
+  }];
 }
 
 @end

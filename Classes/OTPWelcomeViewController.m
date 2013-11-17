@@ -36,16 +36,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  UINavigationItem *navItem = [self navigationItem];
   NSString *title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
-  navItem.title = title;
-  navItem.hidesBackButton = YES;
+  self.title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
+  self.navigationItem.hidesBackButton = YES;
+    
   UIBarButtonItem *button
     = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                      target:nil
                                                      action:@selector(addAuthURL:)]
        autorelease];
-  [navItem setRightBarButtonItem:button animated:NO];
+  self.navigationItem.rightBarButtonItem = button;
 
   NSString *label = NSLocalizedString(@"Welcome_label", @"Welcome text");
   welcomeText_.text = label;

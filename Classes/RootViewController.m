@@ -17,12 +17,14 @@
 //
 
 #import "RootViewController.h"
+#import "OTPAuthAppDelegate.h"
 #import "OTPAuthURL.h"
 #import "HOTPGenerator.h"
 #import "OTPTableViewCell.h"
 #import "UIColor+MobileColors.h"
 #import "OTPAuthBarClock.h"
 #import "TOTPGenerator.h"
+#import "OTPAuthAboutController.h"
 
 @interface RootViewController ()
 @property(nonatomic, readwrite, retain) OTPAuthBarClock *clock;
@@ -34,6 +36,15 @@
 @synthesize clock = clock_;
 @synthesize addItem = addItem_;
 @synthesize legalItem = legalItem_;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = NSLocalizedString(@"Google Authenticator", @"Product Name");
+    }
+    return self;
+}
 
 - (void)dealloc {
   [self.clock invalidate];
@@ -55,11 +66,26 @@
          UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setToolbarHidden:NO animated:animated];
+}
+
 - (void)viewDidLoad {
-  UITableView *view = (UITableView *)self.view;
+  UITableView *view = self.tableView;
   view.dataSource = self.delegate;
   view.delegate = self.delegate;
   view.backgroundColor = [UIColor googleBlueBackgroundColor];
+    
+  UIBarButtonItem *flexSpace1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+  UIBarButtonItem *flexSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+  UIBarButtonItem *legalButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Legal Information", @"iPhone Legal Information Button Title") style:UIBarButtonItemStylePlain target:self action:@selector(showLegalInformation:)];
+  UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAuthURL:)];
+  self.toolbarItems = @[self.editButtonItem, flexSpace1, legalButton, flexSpace2, addButton];
+  self.legalItem = legalButton;
+  self.addItem = addButton;
 
   UINavigationItem *navigationItem = self.navigationItem;
   self.clock = [[[OTPAuthBarClock alloc] initWithFrame:CGRectMake(0,0,30,30)
@@ -102,6 +128,16 @@
       [(OTPTableViewCell*)cell showCopyMenu:location];
     }
   }
+}
+
+- (IBAction)showLegalInformation:(id)sender {
+    OTPAuthAboutController *controller
+    = [[[OTPAuthAboutController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+-(IBAction)addAuthURL:(id)sender {
+    [(OTPAuthAppDelegate *)[[UIApplication sharedApplication] delegate] addAuthURL:sender];
 }
 
 @end
