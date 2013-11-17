@@ -967,7 +967,7 @@
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;
 				INFOPLIST_FILE = "OTPAuth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreVideo,
@@ -983,7 +983,7 @@
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;
 				INFOPLIST_FILE = "OTPAuth-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreVideo,
@@ -1021,9 +1021,8 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
 				"GOOGLE_IPHONE_ENTERPRISE_CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Entitlements.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1032,9 +1031,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
 				"GOOGLE_IPHONE_ENTERPRISE_CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Entitlements.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				ZXING_CONFIGURATION = Release;
 			};

@@ -32,8 +32,7 @@
 @property(nonatomic, readwrite, assign) UITextField *activeTextField;
 @property(nonatomic, readwrite, assign) UIBarButtonItem *doneButtonItem;
 @property(nonatomic, readwrite, retain) Decoder *decoder;
-// queue is retained using dispatch_queue retain semantics.
-@property (nonatomic, retain) __attribute__((NSObject)) dispatch_queue_t queue;
+@property (nonatomic) dispatch_queue_t queue;
 @property (nonatomic, retain) AVCaptureSession *avSession;
 @property BOOL handleCapture;
 
@@ -53,7 +52,7 @@
 @synthesize scrollView = scrollView_;
 @synthesize activeTextField = activeTextField_;
 @synthesize decoder = decoder_;
-@dynamic queue;
+@synthesize queue = queue_;
 @synthesize avSession = avSession_;
 @synthesize handleCapture = handleCapture_;
 
@@ -81,9 +80,9 @@
   self.scanBarcodeButton = nil;
   self.scrollView = nil;
   self.decoder = nil;
-  self.queue = nil;
+    dispatch_release(queue_);
+    self.queue = nil;
   self.avSession = nil;
-  self.queue = nil;
   [super dealloc];
 }
 
@@ -145,10 +144,6 @@
   self.doneButtonItem = nil;
   self.handleCapture = NO;
   [self.avSession stopRunning];
-}
-
-- (dispatch_queue_t)queue {
-  return queue_;
 }
 
 - (void)setQueue:(dispatch_queue_t)aQueue {
