@@ -172,7 +172,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 
 - (void)authURLEntryController:(OTPAuthURLEntryController*)controller
               didCreateAuthURL:(OTPAuthURL *)authURL {
-  [self.navigationController dismissModalViewControllerAnimated:YES];
+  [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
   [self.navigationController popToRootViewControllerAnimated:NO];
   [authURL saveToKeychain];
   [self.authURLs addObject:authURL];
@@ -364,8 +364,7 @@ static NSString *const kOTPKeychainEntriesArray = @"OTPKeychainEntries";
 -(IBAction)addAuthURL:(id)sender {
   [self.navigationController popToRootViewControllerAnimated:NO];
   [self.rootViewController setEditing:NO animated:NO];
-  [self.navigationController presentModalViewController:self.authURLEntryController
-                                               animated:YES];
+  [self.navigationController presentViewController:self.authURLEntryController animated:YES completion:NULL];
 }
 
 - (IBAction)showLegalInformation:(id)sender {

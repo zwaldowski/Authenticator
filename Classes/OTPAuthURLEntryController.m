@@ -260,7 +260,7 @@
 - (IBAction)cancel:(id)sender {
   self.handleCapture = NO;
   [self.avSession stopRunning];
-  [self dismissModalViewControllerAnimated:NO];
+  [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
 - (IBAction)scanBarcode:(id)sender {
@@ -336,7 +336,7 @@
          forControlEvents:UIControlEventTouchUpInside];
   [overlayView addSubview:cancelButton];
 
-  [self presentModalViewController:previewController animated:NO];
+  [self presentViewController:previewController animated:NO completion:NULL];
   self.handleCapture = YES;
   [self.avSession startRunning];
 }
@@ -417,7 +417,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.avSession stopRunning];
     if (authURL) {
       [self.delegate authURLEntryController:self didCreateAuthURL:authURL];
-      [self dismissModalViewControllerAnimated:NO];
+        [self dismissViewControllerAnimated:NO completion:NULL];
     } else {
       NSString *title = GTMLocalizedString(@"Invalid Barcode",
                                            @"Alert title describing a bad barcode");
