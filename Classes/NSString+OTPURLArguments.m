@@ -24,21 +24,21 @@
   // Encode all the reserved characters, per RFC 3986
   // (<http://www.ietf.org/rfc/rfc3986.txt>)
   CFStringRef escaped = 
-    CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+    CFURLCreateStringByAddingPercentEscapes(NULL,
                                             (CFStringRef)self,
                                             NULL,
-                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                            CFSTR("!*'();:@&=+$,/?%#[]"),
                                             kCFStringEncodingUTF8);
   return [(NSString *)escaped autorelease];
 }
 
 - (NSString*)otp_stringByUnescapingFromURLArgument {
-  NSMutableString *resultString = [NSMutableString stringWithString:self];
+  NSMutableString *resultString = [self mutableCopy];
   [resultString replaceOccurrencesOfString:@"+"
                                 withString:@" "
                                    options:NSLiteralSearch
                                      range:NSMakeRange(0, [resultString length])];
-  return [resultString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  return [[resultString autorelease] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
