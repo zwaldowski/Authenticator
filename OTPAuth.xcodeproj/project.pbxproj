@@ -295,7 +295,6 @@
 		8B2B9DE4119084FC00437315 /* OTPAuthURLEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURLEntryController.m; sourceTree = "<group>"; };
 		8B2BC3631302FE2900C7B44C /* GTMLocalizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLocalizedString.h; sourceTree = "<group>"; };
 		8B3F0F59122F2003009A6409 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		8B4553CA1192158300ABD707 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.entitlements"; sourceTree = "<group>"; };
 		8B45557611932B5D00ABD707 /* OTPAuthBarClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthBarClock.h; sourceTree = "<group>"; };
 		8B45557711932B5D00ABD707 /* OTPAuthBarClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthBarClock.m; sourceTree = "<group>"; };
 		8B73DCEE1182656200861C87 /* TOTPGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOTPGenerator.h; sourceTree = "<group>"; };
@@ -433,7 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				8B2B8AE1118BA49F00437315 /* README */,
-				8B4553CA1192158300ABD707 /* Entitlements.plist */,
 				8BF50835118633BB005C936F /* zxing */,
 				8B73DCF81182657500861C87 /* google-toolbox-for-mac */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1010,7 +1008,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;
 				INFOPLIST_FILE = "OTPAuth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
@@ -1027,7 +1024,6 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				HEADER_SEARCH_PATHS = ../thirdparty/zxing/cpp/core/src;
 				INFOPLIST_FILE = "OTPAuth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
