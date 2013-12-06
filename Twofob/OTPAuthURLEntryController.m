@@ -264,18 +264,13 @@
     = [AVCaptureVideoPreviewLayer layerWithSession:self.avSession];
   [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 
-  UIButton *cancelButton =
-    [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  NSString *cancelString
-    = NSLocalizedString(@"Cancel", @"Cancel button for taking pictures");
-  cancelButton.accessibilityLabel = @"Cancel";
-  CGFloat height = [UIFont systemFontSize];
-  CGSize size
-    = [cancelString sizeWithFont:[UIFont systemFontOfSize:height]];
+  UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
+  NSString *cancelString = NSLocalizedString(@"Cancel", @"Cancel button for taking pictures");
+  cancelButton.accessibilityLabel = cancelString;
   [cancelButton setTitle:cancelString forState:UIControlStateNormal];
 
-  UIViewController *previewController
-    = [[UIViewController alloc] init];
+  UIViewController *previewController = [[UIViewController alloc] init];
   [previewController.view.layer addSublayer:previewLayer];
 
   CGRect frame = previewController.view.bounds;
@@ -284,28 +279,15 @@
     = [[OTPScannerOverlayView alloc] initWithFrame:frame];
   [previewController.view addSubview:overlayView];
 
-  // Center the cancel button horizontally, and put it
-  // kBottomPadding from the bottom of the view.
-  static const int kBottomPadding = 10;
-  static const int kInternalXMargin = 10;
-  static const int kInternalYMargin = 10;
-  frame = CGRectMake(CGRectGetMidX(frame)
-                            - ((size.width / 2) + kInternalXMargin),
-                            CGRectGetHeight(frame)
-                            - (height + (2 * kInternalYMargin) + kBottomPadding),
-                            (2  * kInternalXMargin) + size.width,
-                            height + (2 * kInternalYMargin));
-  [cancelButton setFrame:frame];
-
-  // Set it up so that if the view should resize, the cancel button stays
-  // h-centered and v-bottom-fixed in the view.
-  cancelButton.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
-                                   UIViewAutoresizingFlexibleLeftMargin |
-                                   UIViewAutoresizingFlexibleRightMargin);
   [cancelButton addTarget:self
                    action:@selector(cancel:)
          forControlEvents:UIControlEventTouchUpInside];
   [overlayView addSubview:cancelButton];
+
+  NSDictionary *metrics = @{@"margin": @10};
+  [overlayView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=margin)-[cancelButton]-(>=margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(cancelButton)]];
+  [overlayView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[cancelButton]-(margin)-|" options:0 metrics:metrics views:NSDictionaryOfVariableBindings(cancelButton)]];
+  [overlayView addConstraint:[NSLayoutConstraint constraintWithItem:cancelButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:overlayView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 
   [self presentViewController:previewController animated:NO completion:NULL];
   self.handleCapture = YES;
