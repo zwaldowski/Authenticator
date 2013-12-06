@@ -1,0 +1,851 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB285EFB1851D84700A63C7E /* OTPDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285ED51851D84700A63C7E /* OTPDrawing.m */; };
+		DB285EFC1851D84700A63C7E /* NSString+OTPURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285ED71851D84700A63C7E /* NSString+OTPURLArguments.m */; };
+		DB285EFD1851D84700A63C7E /* NSURL+OTPURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285ED91851D84700A63C7E /* NSURL+OTPURLArguments.m */; };
+		DB285EFE1851D84700A63C7E /* NSData+OTPBase32Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EDB1851D84700A63C7E /* NSData+OTPBase32Encoding.m */; };
+		DB285EFF1851D84700A63C7E /* UIColor+MobileColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EDD1851D84700A63C7E /* UIColor+MobileColors.m */; };
+		DB285F001851D84700A63C7E /* OTPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EDF1851D84700A63C7E /* OTPTableView.m */; };
+		DB285F011851D84700A63C7E /* OTPGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EE01851D84700A63C7E /* OTPGenerator.m */; };
+		DB285F021851D84700A63C7E /* HOTPGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EE31851D84700A63C7E /* HOTPGenerator.m */; };
+		DB285F041851D84700A63C7E /* OTPAuthAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EE61851D84700A63C7E /* OTPAuthAboutController.m */; };
+		DB285F051851D84700A63C7E /* OTPAuthAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EE81851D84700A63C7E /* OTPAuthAppDelegate.m */; };
+		DB285F061851D84700A63C7E /* OTPAuthURL.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EEA1851D84700A63C7E /* OTPAuthURL.m */; };
+		DB285F081851D84700A63C7E /* OTPAuthURLEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EED1851D84700A63C7E /* OTPAuthURLEntryController.m */; };
+		DB285F091851D84700A63C7E /* OTPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EEF1851D84700A63C7E /* OTPTableViewCell.m */; };
+		DB285F0A1851D84700A63C7E /* OTPWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EF11851D84700A63C7E /* OTPWelcomeViewController.m */; };
+		DB285F0B1851D84700A63C7E /* OTPScannerOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EF31851D84700A63C7E /* OTPScannerOverlayView.m */; };
+		DB285F0C1851D84700A63C7E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EF51851D84700A63C7E /* RootViewController.m */; };
+		DB285F0D1851D84700A63C7E /* TOTPGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EF71851D84700A63C7E /* TOTPGenerator.m */; };
+		DB285F0F1851D84700A63C7E /* OTPAuthBarClock.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285EFA1851D84700A63C7E /* OTPAuthBarClock.m */; };
+		DB285F141851D85500A63C7E /* OTPAuthAboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB285F101851D85500A63C7E /* OTPAuthAboutController.xib */; };
+		DB285F151851D85500A63C7E /* OTPWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB285F111851D85500A63C7E /* OTPWelcomeViewController.xib */; };
+		DB285F161851D85500A63C7E /* OTPAuthURLEntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB285F121851D85500A63C7E /* OTPAuthURLEntryController.xib */; };
+		DB285F171851D85500A63C7E /* OTPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB285F131851D85500A63C7E /* OTPTableViewCell.xib */; };
+		DB285F1D1851D8BC00A63C7E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285F1C1851D8BC00A63C7E /* SenTestingKit.framework */; };
+		DB285F211851D8E000A63C7E /* TOTPGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285F1E1851D8E000A63C7E /* TOTPGeneratorTest.m */; };
+		DB285F221851D8E000A63C7E /* OTPAuthURLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285F1F1851D8E000A63C7E /* OTPAuthURLTest.m */; };
+		DB285F231851D8E000A63C7E /* HOTPGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DB285F201851D8E000A63C7E /* HOTPGeneratorTest.m */; };
+		DB285F241851D8FD00A63C7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB285F261851D8FD00A63C7E /* Localizable.strings */; };
+		DB285F271851D90400A63C7E /* LegalNotices.html in Resources */ = {isa = PBXBuildFile; fileRef = DB285F291851D90400A63C7E /* LegalNotices.html */; };
+		DB4404291838A155000F898B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4404281838A155000F898B /* Foundation.framework */; };
+		DB44042B1838A155000F898B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB44042A1838A155000F898B /* CoreGraphics.framework */; };
+		DB44042D1838A155000F898B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB44042C1838A155000F898B /* UIKit.framework */; };
+		DB4404351838A155000F898B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4404341838A155000F898B /* main.m */; };
+		DB4404411838A155000F898B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4404401838A155000F898B /* Images.xcassets */; };
+		DB4404481838A155000F898B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4404471838A155000F898B /* XCTest.framework */; };
+		DB4404491838A155000F898B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4404281838A155000F898B /* Foundation.framework */; };
+		DB44044A1838A155000F898B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB44042C1838A155000F898B /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB44044B1838A155000F898B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB44041D1838A155000F898B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB4404241838A155000F898B;
+			remoteInfo = Twofob;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB285ED31851D83900A63C7E /* OTPDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTPDefines.h; sourceTree = "<group>"; };
+		DB285ED41851D84700A63C7E /* OTPDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPDrawing.h; sourceTree = "<group>"; };
+		DB285ED51851D84700A63C7E /* OTPDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPDrawing.m; sourceTree = "<group>"; };
+		DB285ED61851D84700A63C7E /* NSString+OTPURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OTPURLArguments.h"; sourceTree = "<group>"; };
+		DB285ED71851D84700A63C7E /* NSString+OTPURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OTPURLArguments.m"; sourceTree = "<group>"; };
+		DB285ED81851D84700A63C7E /* NSURL+OTPURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+OTPURLArguments.h"; sourceTree = "<group>"; };
+		DB285ED91851D84700A63C7E /* NSURL+OTPURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+OTPURLArguments.m"; sourceTree = "<group>"; };
+		DB285EDA1851D84700A63C7E /* NSData+OTPBase32Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OTPBase32Encoding.h"; sourceTree = "<group>"; };
+		DB285EDB1851D84700A63C7E /* NSData+OTPBase32Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+OTPBase32Encoding.m"; sourceTree = "<group>"; };
+		DB285EDC1851D84700A63C7E /* UIColor+MobileColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MobileColors.h"; sourceTree = "<group>"; };
+		DB285EDD1851D84700A63C7E /* UIColor+MobileColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MobileColors.m"; sourceTree = "<group>"; };
+		DB285EDE1851D84700A63C7E /* OTPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPTableView.h; sourceTree = "<group>"; };
+		DB285EDF1851D84700A63C7E /* OTPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPTableView.m; sourceTree = "<group>"; };
+		DB285EE01851D84700A63C7E /* OTPGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPGenerator.m; sourceTree = "<group>"; };
+		DB285EE11851D84700A63C7E /* OTPGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPGenerator.h; sourceTree = "<group>"; };
+		DB285EE21851D84700A63C7E /* HOTPGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOTPGenerator.h; sourceTree = "<group>"; };
+		DB285EE31851D84700A63C7E /* HOTPGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTPGenerator.m; sourceTree = "<group>"; };
+		DB285EE51851D84700A63C7E /* OTPAuthAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthAboutController.h; sourceTree = "<group>"; };
+		DB285EE61851D84700A63C7E /* OTPAuthAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthAboutController.m; sourceTree = "<group>"; };
+		DB285EE71851D84700A63C7E /* OTPAuthAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthAppDelegate.h; sourceTree = "<group>"; };
+		DB285EE81851D84700A63C7E /* OTPAuthAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthAppDelegate.m; sourceTree = "<group>"; };
+		DB285EE91851D84700A63C7E /* OTPAuthURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthURL.h; sourceTree = "<group>"; };
+		DB285EEA1851D84700A63C7E /* OTPAuthURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURL.m; sourceTree = "<group>"; };
+		DB285EEC1851D84700A63C7E /* OTPAuthURLEntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthURLEntryController.h; sourceTree = "<group>"; };
+		DB285EED1851D84700A63C7E /* OTPAuthURLEntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURLEntryController.m; sourceTree = "<group>"; };
+		DB285EEE1851D84700A63C7E /* OTPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPTableViewCell.h; sourceTree = "<group>"; };
+		DB285EEF1851D84700A63C7E /* OTPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPTableViewCell.m; sourceTree = "<group>"; };
+		DB285EF01851D84700A63C7E /* OTPWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPWelcomeViewController.h; sourceTree = "<group>"; };
+		DB285EF11851D84700A63C7E /* OTPWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPWelcomeViewController.m; sourceTree = "<group>"; };
+		DB285EF21851D84700A63C7E /* OTPScannerOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPScannerOverlayView.h; sourceTree = "<group>"; };
+		DB285EF31851D84700A63C7E /* OTPScannerOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPScannerOverlayView.m; sourceTree = "<group>"; };
+		DB285EF41851D84700A63C7E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		DB285EF51851D84700A63C7E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		DB285EF61851D84700A63C7E /* TOTPGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOTPGenerator.h; sourceTree = "<group>"; };
+		DB285EF71851D84700A63C7E /* TOTPGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOTPGenerator.m; sourceTree = "<group>"; };
+		DB285EF91851D84700A63C7E /* OTPAuthBarClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPAuthBarClock.h; sourceTree = "<group>"; };
+		DB285EFA1851D84700A63C7E /* OTPAuthBarClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthBarClock.m; sourceTree = "<group>"; };
+		DB285F101851D85500A63C7E /* OTPAuthAboutController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPAuthAboutController.xib; sourceTree = "<group>"; };
+		DB285F111851D85500A63C7E /* OTPWelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPWelcomeViewController.xib; sourceTree = "<group>"; };
+		DB285F121851D85500A63C7E /* OTPAuthURLEntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPAuthURLEntryController.xib; sourceTree = "<group>"; };
+		DB285F131851D85500A63C7E /* OTPTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OTPTableViewCell.xib; sourceTree = "<group>"; };
+		DB285F1C1851D8BC00A63C7E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DB285F1E1851D8E000A63C7E /* TOTPGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOTPGeneratorTest.m; sourceTree = "<group>"; };
+		DB285F1F1851D8E000A63C7E /* OTPAuthURLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPAuthURLTest.m; sourceTree = "<group>"; };
+		DB285F201851D8E000A63C7E /* HOTPGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTPGeneratorTest.m; sourceTree = "<group>"; };
+		DB285F251851D8FD00A63C7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F281851D90400A63C7E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F2A1851D96300A63C7E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = ar.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F2B1851D96300A63C7E /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F2C1851D9E100A63C7E /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = vi.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F2D1851D9E100A63C7E /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F2E1851DA2C00A63C7E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = uk.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F2F1851DA2C00A63C7E /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F301851DA4A00A63C7E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F311851DA4A00A63C7E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F321851DA6B00A63C7E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F331851DA6B00A63C7E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F341851DA9200A63C7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F351851DA9200A63C7E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F361851DAA900A63C7E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = th; path = th.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F371851DAA900A63C7E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F381851DAC400A63C7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F391851DAC400A63C7E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F3A1851DAE300A63C7E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F3B1851DAE300A63C7E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F3C1851DB3500A63C7E /* zh-Hans-HK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans-HK"; path = "zh-Hans-HK.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F3D1851DB3500A63C7E /* zh-Hans-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-HK"; path = "zh-Hans-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F3E1851DB8900A63C7E /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = zh; path = zh.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F3F1851DB8900A63C7E /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F401851DBD200A63C7E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DB285F421851DBE200A63C7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F431851DBE200A63C7E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F441851DC0100A63C7E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F451851DC0200A63C7E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F461851DC1200A63C7E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F471851DC1200A63C7E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F481851DC2500A63C7E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ko; path = ko.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F491851DC2500A63C7E /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F4A1851DC4100A63C7E /* fr-CH */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "fr-CH"; path = "fr-CH.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F4B1851DC4100A63C7E /* fr-CH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CH"; path = "fr-CH.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F4C1851DC5B00A63C7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F4D1851DC5B00A63C7E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F4E1851DC5F00A63C7E /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F4F1851DC5F00A63C7E /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F521851DC8C00A63C7E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = da; path = da.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F531851DC8C00A63C7E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F541851DCC100A63C7E /* de-CH */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "de-CH"; path = "de-CH.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F551851DCC100A63C7E /* de-CH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "de-CH"; path = "de-CH.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F561851DCDD00A63C7E /* de-AT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "de-AT"; path = "de-AT.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F571851DCDD00A63C7E /* de-AT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "de-AT"; path = "de-AT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F581851DCF600A63C7E /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fi; path = fi.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F591851DCF600A63C7E /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F5A1851DD1500A63C7E /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nb; path = nb.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F5B1851DD1500A63C7E /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F5C1851DD5D00A63C7E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sv; path = sv.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F5D1851DD5D00A63C7E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F5E1851DD7100A63C7E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F5F1851DD7100A63C7E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F601851DD7E00A63C7E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pl; path = pl.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F611851DD7E00A63C7E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F621851DDAC00A63C7E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = tr; path = tr.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F631851DDAC00A63C7E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F641851DDC400A63C7E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F651851DDC400A63C7E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F661851DDE500A63C7E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hu; path = hu.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F671851DDE500A63C7E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F681851DDFD00A63C7E /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ca; path = ca.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F691851DDFD00A63C7E /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F6A1851DE1100A63C7E /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hr; path = hr.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F6B1851DE1100A63C7E /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F6C1851DE2400A63C7E /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = bg; path = bg.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F6D1851DE2400A63C7E /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F6E1851DE6000A63C7E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = el; path = el.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F6F1851DE6000A63C7E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F701851DE7E00A63C7E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = he; path = he.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F711851DE7E00A63C7E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F721851DEC800A63C7E /* he-IL */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "he-IL"; path = "he-IL.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F731851DEC800A63C7E /* he-IL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "he-IL"; path = "he-IL.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F741851DEF300A63C7E /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ro; path = ro.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F751851DEF300A63C7E /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F761851DF2100A63C7E /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sk; path = sk.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F771851DF2100A63C7E /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F781851DF4300A63C7E /* id */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = id; path = id.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F791851DF4300A63C7E /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F7C1851DF9100A63C7E /* mo */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mo; path = mo.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F7D1851DF9100A63C7E /* mo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mo; path = mo.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F7E1851DFB500A63C7E /* en-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-ZA"; path = "en-ZA.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F7F1851DFB500A63C7E /* en-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-ZA"; path = "en-ZA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F801851DFDB00A63C7E /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F811851DFDB00A63C7E /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F821851DFF700A63C7E /* en-SG */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-SG"; path = "en-SG.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F831851DFF700A63C7E /* en-SG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-SG"; path = "en-SG.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F841851E01B00A63C7E /* en-IE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-IE"; path = "en-IE.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F851851E01B00A63C7E /* en-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-IE"; path = "en-IE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F861851E02D00A63C7E /* en-IN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-IN"; path = "en-IN.lproj/LegalNotices.html"; sourceTree = "<group>"; };
+		DB285F871851E02D00A63C7E /* en-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-IN"; path = "en-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB285F881851E04000A63C7E /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fil; path = fil.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F891851E04000A63C7E /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F8A1851E08A00A63C7E /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sr; path = sr.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F8B1851E08A00A63C7E /* sr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sr; path = sr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F8C1851E0A500A63C7E /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = lt; path = lt.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F8D1851E0A500A63C7E /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F8E1851E0BD00A63C7E /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hi; path = hi.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F8F1851E0BD00A63C7E /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F901851E0D600A63C7E /* ln */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ln; path = ln.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F911851E0D600A63C7E /* ln */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ln; path = ln.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F921851E0EC00A63C7E /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sl; path = sl.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F931851E0EC00A63C7E /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB285F941851E10200A63C7E /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = lv; path = lv.lproj/LegalNotices.html; sourceTree = "<group>"; };
+		DB285F951851E10200A63C7E /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DB4404251838A155000F898B /* Twofob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twofob.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB4404281838A155000F898B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB44042A1838A155000F898B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DB44042C1838A155000F898B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DB4404301838A155000F898B /* Twofob-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Twofob-Info.plist"; sourceTree = "<group>"; };
+		DB4404341838A155000F898B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DB4404361838A155000F898B /* Twofob-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Twofob-Prefix.pch"; sourceTree = "<group>"; };
+		DB4404401838A155000F898B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DB4404461838A155000F898B /* TwofobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwofobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB4404471838A155000F898B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DB44044F1838A155000F898B /* TwofobTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwofobTests-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB4404221838A155000F898B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB44042B1838A155000F898B /* CoreGraphics.framework in Frameworks */,
+				DB44042D1838A155000F898B /* UIKit.framework in Frameworks */,
+				DB4404291838A155000F898B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB4404431838A155000F898B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB285F1D1851D8BC00A63C7E /* SenTestingKit.framework in Frameworks */,
+				DB4404481838A155000F898B /* XCTest.framework in Frameworks */,
+				DB44044A1838A155000F898B /* UIKit.framework in Frameworks */,
+				DB4404491838A155000F898B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB44041C1838A155000F898B = {
+			isa = PBXGroup;
+			children = (
+				DB44042E1838A155000F898B /* Twofob */,
+				DB44044D1838A155000F898B /* TwofobTests */,
+				DB4404271838A155000F898B /* Frameworks */,
+				DB4404261838A155000F898B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB4404261838A155000F898B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB4404251838A155000F898B /* Twofob.app */,
+				DB4404461838A155000F898B /* TwofobTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB4404271838A155000F898B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB285F401851DBD200A63C7E /* Security.framework */,
+				DB285F1C1851D8BC00A63C7E /* SenTestingKit.framework */,
+				DB4404281838A155000F898B /* Foundation.framework */,
+				DB44042A1838A155000F898B /* CoreGraphics.framework */,
+				DB44042C1838A155000F898B /* UIKit.framework */,
+				DB4404471838A155000F898B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB44042E1838A155000F898B /* Twofob */ = {
+			isa = PBXGroup;
+			children = (
+				DB285ED41851D84700A63C7E /* OTPDrawing.h */,
+				DB285ED51851D84700A63C7E /* OTPDrawing.m */,
+				DB285ED61851D84700A63C7E /* NSString+OTPURLArguments.h */,
+				DB285ED71851D84700A63C7E /* NSString+OTPURLArguments.m */,
+				DB285ED81851D84700A63C7E /* NSURL+OTPURLArguments.h */,
+				DB285ED91851D84700A63C7E /* NSURL+OTPURLArguments.m */,
+				DB285EDA1851D84700A63C7E /* NSData+OTPBase32Encoding.h */,
+				DB285EDB1851D84700A63C7E /* NSData+OTPBase32Encoding.m */,
+				DB285EDC1851D84700A63C7E /* UIColor+MobileColors.h */,
+				DB285EDD1851D84700A63C7E /* UIColor+MobileColors.m */,
+				DB285EDE1851D84700A63C7E /* OTPTableView.h */,
+				DB285EDF1851D84700A63C7E /* OTPTableView.m */,
+				DB285EE01851D84700A63C7E /* OTPGenerator.m */,
+				DB285EE11851D84700A63C7E /* OTPGenerator.h */,
+				DB285EE21851D84700A63C7E /* HOTPGenerator.h */,
+				DB285EE31851D84700A63C7E /* HOTPGenerator.m */,
+				DB285EE51851D84700A63C7E /* OTPAuthAboutController.h */,
+				DB285EE61851D84700A63C7E /* OTPAuthAboutController.m */,
+				DB285EE71851D84700A63C7E /* OTPAuthAppDelegate.h */,
+				DB285EE81851D84700A63C7E /* OTPAuthAppDelegate.m */,
+				DB285EE91851D84700A63C7E /* OTPAuthURL.h */,
+				DB285EEA1851D84700A63C7E /* OTPAuthURL.m */,
+				DB285EEC1851D84700A63C7E /* OTPAuthURLEntryController.h */,
+				DB285EED1851D84700A63C7E /* OTPAuthURLEntryController.m */,
+				DB285EEE1851D84700A63C7E /* OTPTableViewCell.h */,
+				DB285EEF1851D84700A63C7E /* OTPTableViewCell.m */,
+				DB285EF01851D84700A63C7E /* OTPWelcomeViewController.h */,
+				DB285EF11851D84700A63C7E /* OTPWelcomeViewController.m */,
+				DB285EF21851D84700A63C7E /* OTPScannerOverlayView.h */,
+				DB285EF31851D84700A63C7E /* OTPScannerOverlayView.m */,
+				DB285EF41851D84700A63C7E /* RootViewController.h */,
+				DB285EF51851D84700A63C7E /* RootViewController.m */,
+				DB285EF61851D84700A63C7E /* TOTPGenerator.h */,
+				DB285EF71851D84700A63C7E /* TOTPGenerator.m */,
+				DB285EF91851D84700A63C7E /* OTPAuthBarClock.h */,
+				DB285EFA1851D84700A63C7E /* OTPAuthBarClock.m */,
+				DB285F101851D85500A63C7E /* OTPAuthAboutController.xib */,
+				DB285F111851D85500A63C7E /* OTPWelcomeViewController.xib */,
+				DB285F121851D85500A63C7E /* OTPAuthURLEntryController.xib */,
+				DB285F131851D85500A63C7E /* OTPTableViewCell.xib */,
+				DB44042F1838A155000F898B /* Supporting Files */,
+			);
+			path = Twofob;
+			sourceTree = "<group>";
+		};
+		DB44042F1838A155000F898B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB285F291851D90400A63C7E /* LegalNotices.html */,
+				DB285F261851D8FD00A63C7E /* Localizable.strings */,
+				DB285ED31851D83900A63C7E /* OTPDefines.h */,
+				DB4404401838A155000F898B /* Images.xcassets */,
+				DB4404301838A155000F898B /* Twofob-Info.plist */,
+				DB4404341838A155000F898B /* main.m */,
+				DB4404361838A155000F898B /* Twofob-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB44044D1838A155000F898B /* TwofobTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB285F1E1851D8E000A63C7E /* TOTPGeneratorTest.m */,
+				DB285F1F1851D8E000A63C7E /* OTPAuthURLTest.m */,
+				DB285F201851D8E000A63C7E /* HOTPGeneratorTest.m */,
+				DB44044E1838A155000F898B /* Supporting Files */,
+			);
+			path = TwofobTests;
+			sourceTree = "<group>";
+		};
+		DB44044E1838A155000F898B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DB44044F1838A155000F898B /* TwofobTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB4404241838A155000F898B /* Twofob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB4404571838A155000F898B /* Build configuration list for PBXNativeTarget "Twofob" */;
+			buildPhases = (
+				DB4404211838A155000F898B /* Sources */,
+				DB4404221838A155000F898B /* Frameworks */,
+				DB4404231838A155000F898B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Twofob;
+			productName = Twofob;
+			productReference = DB4404251838A155000F898B /* Twofob.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB4404451838A155000F898B /* TwofobTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB44045A1838A155000F898B /* Build configuration list for PBXNativeTarget "TwofobTests" */;
+			buildPhases = (
+				DB4404421838A155000F898B /* Sources */,
+				DB4404431838A155000F898B /* Frameworks */,
+				DB4404441838A155000F898B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB44044C1838A155000F898B /* PBXTargetDependency */,
+			);
+			name = TwofobTests;
+			productName = TwofobTests;
+			productReference = DB4404461838A155000F898B /* TwofobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB44041D1838A155000F898B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FOB;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Pandamonia LLC";
+				TargetAttributes = {
+					DB4404451838A155000F898B = {
+						TestTargetID = DB4404241838A155000F898B;
+					};
+				};
+			};
+			buildConfigurationList = DB4404201838A155000F898B /* Build configuration list for PBXProject "Twofob" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+				vi,
+				uk,
+				fr,
+				de,
+				ja,
+				th,
+				"zh-Hans",
+				"zh-Hant",
+				"zh-Hans-HK",
+				zh,
+				es,
+				it,
+				nl,
+				ko,
+				"fr-CH",
+				pt,
+				"pt-PT",
+				"pt-BR",
+				da,
+				"de-CH",
+				"de-AT",
+				fi,
+				nb,
+				sv,
+				ru,
+				pl,
+				tr,
+				cs,
+				hu,
+				ca,
+				hr,
+				bg,
+				el,
+				he,
+				"he-IL",
+				ro,
+				sk,
+				id,
+				ms,
+				mo,
+				"en-ZA",
+				"en-GB",
+				"en-SG",
+				"en-IE",
+				"en-IN",
+				fil,
+				sr,
+				lt,
+				hi,
+				ln,
+				sl,
+				lv,
+			);
+			mainGroup = DB44041C1838A155000F898B;
+			productRefGroup = DB4404261838A155000F898B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB4404241838A155000F898B /* Twofob */,
+				DB4404451838A155000F898B /* TwofobTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB4404231838A155000F898B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB4404411838A155000F898B /* Images.xcassets in Resources */,
+				DB285F271851D90400A63C7E /* LegalNotices.html in Resources */,
+				DB285F161851D85500A63C7E /* OTPAuthURLEntryController.xib in Resources */,
+				DB285F141851D85500A63C7E /* OTPAuthAboutController.xib in Resources */,
+				DB285F241851D8FD00A63C7E /* Localizable.strings in Resources */,
+				DB285F151851D85500A63C7E /* OTPWelcomeViewController.xib in Resources */,
+				DB285F171851D85500A63C7E /* OTPTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB4404441838A155000F898B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB4404211838A155000F898B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB285F081851D84700A63C7E /* OTPAuthURLEntryController.m in Sources */,
+				DB285F0C1851D84700A63C7E /* RootViewController.m in Sources */,
+				DB285F061851D84700A63C7E /* OTPAuthURL.m in Sources */,
+				DB285F091851D84700A63C7E /* OTPTableViewCell.m in Sources */,
+				DB285F0B1851D84700A63C7E /* OTPScannerOverlayView.m in Sources */,
+				DB285EFC1851D84700A63C7E /* NSString+OTPURLArguments.m in Sources */,
+				DB285EFD1851D84700A63C7E /* NSURL+OTPURLArguments.m in Sources */,
+				DB285F041851D84700A63C7E /* OTPAuthAboutController.m in Sources */,
+				DB285F051851D84700A63C7E /* OTPAuthAppDelegate.m in Sources */,
+				DB285EFB1851D84700A63C7E /* OTPDrawing.m in Sources */,
+				DB285F0A1851D84700A63C7E /* OTPWelcomeViewController.m in Sources */,
+				DB285F0D1851D84700A63C7E /* TOTPGenerator.m in Sources */,
+				DB285F021851D84700A63C7E /* HOTPGenerator.m in Sources */,
+				DB285F0F1851D84700A63C7E /* OTPAuthBarClock.m in Sources */,
+				DB285F011851D84700A63C7E /* OTPGenerator.m in Sources */,
+				DB285EFE1851D84700A63C7E /* NSData+OTPBase32Encoding.m in Sources */,
+				DB4404351838A155000F898B /* main.m in Sources */,
+				DB285F001851D84700A63C7E /* OTPTableView.m in Sources */,
+				DB285EFF1851D84700A63C7E /* UIColor+MobileColors.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB4404421838A155000F898B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB285F231851D8E000A63C7E /* HOTPGeneratorTest.m in Sources */,
+				DB285F211851D8E000A63C7E /* TOTPGeneratorTest.m in Sources */,
+				DB285F221851D8E000A63C7E /* OTPAuthURLTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB44044C1838A155000F898B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB4404241838A155000F898B /* Twofob */;
+			targetProxy = DB44044B1838A155000F898B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB285F261851D8FD00A63C7E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB285F251851D8FD00A63C7E /* en */,
+				DB285F2B1851D96300A63C7E /* ar */,
+				DB285F2D1851D9E100A63C7E /* vi */,
+				DB285F2F1851DA2C00A63C7E /* uk */,
+				DB285F311851DA4A00A63C7E /* fr */,
+				DB285F331851DA6B00A63C7E /* de */,
+				DB285F351851DA9200A63C7E /* ja */,
+				DB285F371851DAA900A63C7E /* th */,
+				DB285F391851DAC400A63C7E /* zh-Hans */,
+				DB285F3B1851DAE300A63C7E /* zh-Hant */,
+				DB285F3D1851DB3500A63C7E /* zh-Hans-HK */,
+				DB285F3F1851DB8900A63C7E /* zh */,
+				DB285F431851DBE200A63C7E /* es */,
+				DB285F451851DC0200A63C7E /* it */,
+				DB285F471851DC1200A63C7E /* nl */,
+				DB285F491851DC2500A63C7E /* ko */,
+				DB285F4B1851DC4100A63C7E /* fr-CH */,
+				DB285F4D1851DC5B00A63C7E /* pt */,
+				DB285F4F1851DC5F00A63C7E /* pt-PT */,
+				DB285F531851DC8C00A63C7E /* da */,
+				DB285F551851DCC100A63C7E /* de-CH */,
+				DB285F571851DCDD00A63C7E /* de-AT */,
+				DB285F591851DCF600A63C7E /* fi */,
+				DB285F5B1851DD1500A63C7E /* nb */,
+				DB285F5D1851DD5D00A63C7E /* sv */,
+				DB285F5F1851DD7100A63C7E /* ru */,
+				DB285F611851DD7E00A63C7E /* pl */,
+				DB285F631851DDAC00A63C7E /* tr */,
+				DB285F651851DDC400A63C7E /* cs */,
+				DB285F671851DDE500A63C7E /* hu */,
+				DB285F691851DDFD00A63C7E /* ca */,
+				DB285F6B1851DE1100A63C7E /* hr */,
+				DB285F6D1851DE2400A63C7E /* bg */,
+				DB285F6F1851DE6000A63C7E /* el */,
+				DB285F711851DE7E00A63C7E /* he */,
+				DB285F731851DEC800A63C7E /* he-IL */,
+				DB285F751851DEF300A63C7E /* ro */,
+				DB285F771851DF2100A63C7E /* sk */,
+				DB285F791851DF4300A63C7E /* id */,
+				DB285F7D1851DF9100A63C7E /* mo */,
+				DB285F7F1851DFB500A63C7E /* en-ZA */,
+				DB285F811851DFDB00A63C7E /* en-GB */,
+				DB285F831851DFF700A63C7E /* en-SG */,
+				DB285F851851E01B00A63C7E /* en-IE */,
+				DB285F871851E02D00A63C7E /* en-IN */,
+				DB285F891851E04000A63C7E /* fil */,
+				DB285F8B1851E08A00A63C7E /* sr */,
+				DB285F8D1851E0A500A63C7E /* lt */,
+				DB285F8F1851E0BD00A63C7E /* hi */,
+				DB285F911851E0D600A63C7E /* ln */,
+				DB285F931851E0EC00A63C7E /* sl */,
+				DB285F951851E10200A63C7E /* lv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		DB285F291851D90400A63C7E /* LegalNotices.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB285F281851D90400A63C7E /* en */,
+				DB285F2A1851D96300A63C7E /* ar */,
+				DB285F2C1851D9E100A63C7E /* vi */,
+				DB285F2E1851DA2C00A63C7E /* uk */,
+				DB285F301851DA4A00A63C7E /* fr */,
+				DB285F321851DA6B00A63C7E /* de */,
+				DB285F341851DA9200A63C7E /* ja */,
+				DB285F361851DAA900A63C7E /* th */,
+				DB285F381851DAC400A63C7E /* zh-Hans */,
+				DB285F3A1851DAE300A63C7E /* zh-Hant */,
+				DB285F3C1851DB3500A63C7E /* zh-Hans-HK */,
+				DB285F3E1851DB8900A63C7E /* zh */,
+				DB285F421851DBE200A63C7E /* es */,
+				DB285F441851DC0100A63C7E /* it */,
+				DB285F461851DC1200A63C7E /* nl */,
+				DB285F481851DC2500A63C7E /* ko */,
+				DB285F4A1851DC4100A63C7E /* fr-CH */,
+				DB285F4C1851DC5B00A63C7E /* pt */,
+				DB285F4E1851DC5F00A63C7E /* pt-PT */,
+				DB285F521851DC8C00A63C7E /* da */,
+				DB285F541851DCC100A63C7E /* de-CH */,
+				DB285F561851DCDD00A63C7E /* de-AT */,
+				DB285F581851DCF600A63C7E /* fi */,
+				DB285F5A1851DD1500A63C7E /* nb */,
+				DB285F5C1851DD5D00A63C7E /* sv */,
+				DB285F5E1851DD7100A63C7E /* ru */,
+				DB285F601851DD7E00A63C7E /* pl */,
+				DB285F621851DDAC00A63C7E /* tr */,
+				DB285F641851DDC400A63C7E /* cs */,
+				DB285F661851DDE500A63C7E /* hu */,
+				DB285F681851DDFD00A63C7E /* ca */,
+				DB285F6A1851DE1100A63C7E /* hr */,
+				DB285F6C1851DE2400A63C7E /* bg */,
+				DB285F6E1851DE6000A63C7E /* el */,
+				DB285F701851DE7E00A63C7E /* he */,
+				DB285F721851DEC800A63C7E /* he-IL */,
+				DB285F741851DEF300A63C7E /* ro */,
+				DB285F761851DF2100A63C7E /* sk */,
+				DB285F781851DF4300A63C7E /* id */,
+				DB285F7C1851DF9100A63C7E /* mo */,
+				DB285F7E1851DFB500A63C7E /* en-ZA */,
+				DB285F801851DFDB00A63C7E /* en-GB */,
+				DB285F821851DFF700A63C7E /* en-SG */,
+				DB285F841851E01B00A63C7E /* en-IE */,
+				DB285F861851E02D00A63C7E /* en-IN */,
+				DB285F881851E04000A63C7E /* fil */,
+				DB285F8A1851E08A00A63C7E /* sr */,
+				DB285F8C1851E0A500A63C7E /* lt */,
+				DB285F8E1851E0BD00A63C7E /* hi */,
+				DB285F901851E0D600A63C7E /* ln */,
+				DB285F921851E0EC00A63C7E /* sl */,
+				DB285F941851E10200A63C7E /* lv */,
+			);
+			name = LegalNotices.html;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB4404551838A155000F898B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DB4404561838A155000F898B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB4404581838A155000F898B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Twofob/Twofob-Prefix.pch";
+				INFOPLIST_FILE = "Twofob/Twofob-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DB4404591838A155000F898B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Twofob/Twofob-Prefix.pch";
+				INFOPLIST_FILE = "Twofob/Twofob-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DB44045B1838A155000F898B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Twofob.app/Twofob";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Twofob/Twofob-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TwofobTests/TwofobTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DB44045C1838A155000F898B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Twofob.app/Twofob";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Twofob/Twofob-Prefix.pch";
+				INFOPLIST_FILE = "TwofobTests/TwofobTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB4404201838A155000F898B /* Build configuration list for PBXProject "Twofob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB4404551838A155000F898B /* Debug */,
+				DB4404561838A155000F898B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB4404571838A155000F898B /* Build configuration list for PBXNativeTarget "Twofob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB4404581838A155000F898B /* Debug */,
+				DB4404591838A155000F898B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB44045A1838A155000F898B /* Build configuration list for PBXNativeTarget "TwofobTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB44045B1838A155000F898B /* Debug */,
+				DB44045C1838A155000F898B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB44041D1838A155000F898B /* Project object */;
+}
