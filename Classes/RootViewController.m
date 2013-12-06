@@ -67,6 +67,12 @@
 }
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	self.tableView.rowHeight = 75;
+	self.tableView.sectionHeaderHeight = 9;
+	self.tableView.sectionFooterHeight = 9;
+	
   UITableView *view = self.tableView;
   view.dataSource = self.delegate;
   view.delegate = self.delegate;
