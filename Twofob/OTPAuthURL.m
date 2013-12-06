@@ -467,8 +467,8 @@ static NSString *const TOTPAuthURLTimerNotification
   NSString *counterString = query[kQueryCounterKey];
   if ([[self class] isValidCounter:counterString]) {
     NSScanner *scanner = [NSScanner scannerWithString:counterString];
-    uint64_t counter;
-    BOOL goodScan = [scanner scanUnsignedLongLong:&counter];
+      NSInteger counter;
+      BOOL goodScan = [scanner scanInteger:&counter];
     // Good scan should always be good based on the isValidCounter check above.
     NSAssert(goodScan, @"goodscan should be true: %c", goodScan);
     HOTPGenerator *generator

@@ -36,7 +36,6 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-  NSString *title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
   self.title = NSLocalizedString(@"Welcome", @"Title for welcome screen");
   self.navigationItem.hidesBackButton = YES;
     
